@@ -11,9 +11,21 @@ if (!empty($_GET['url'])) {
 
     switch ($url[0]) {
 
-        case 'home':
-            include('home.php');
-            break;
+case 'home':
+include('home.php');
+break;
+
+case 'agendas':
+include('agendas.php');
+break;
+       
+case 'agenda_geral_veiculo':
+include('agenda_geral_veiculo.php');
+break;
+
+
+
+
 
             // ALUNOS		
         case 'perfil_aluno':

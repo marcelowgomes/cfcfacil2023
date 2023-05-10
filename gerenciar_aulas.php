@@ -296,9 +296,7 @@ $a_agender =  $controle[totalcontrole] - $agendadas;
                         <thead>
                            <tr class="userDatatable-header">
                               
-                           <th style="width: 1%">
-                                
-                              </th>
+                          
                               <th>
                                  <span class="userDatatable-title">Data</span>
                               </th>
@@ -315,7 +313,9 @@ $a_agender =  $controle[totalcontrole] - $agendadas;
                                  <span class="userDatatable-title">Status</span>
                               </th>
                             
-                             
+                              <th style="width: 1%">
+                                
+                              </th>
                               
                            </tr>
                         </thead>
@@ -388,16 +388,7 @@ $quem = mysqli_fetch_array($exeq);
 
 <tbody>      
 <tr>
-<td>
 
-
-
-
-<?php if ($aula[escala_status] <> '1') { ?> 
-<i class="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#modal-basic<?php echo $aula[id_escala_aluno] ?>"></i> <?php } ?>
-                        
-                        
-                        </td>
                               <td>
                                  <div class="d-flex">
                                     <div class="userDatatable-inline-title">
@@ -460,6 +451,17 @@ $quem = mysqli_fetch_array($exeq);
                                  </div>
                               </td> 
                               
+
+                              <td>
+
+
+
+
+<?php if ($aula[escala_status] <> '1') { ?> 
+<i class="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#modal-basic<?php echo $aula[id_escala_aluno] ?>"></i> <?php } ?>
+                        
+                        
+                        </td>
                               
                         </tr>
                       
