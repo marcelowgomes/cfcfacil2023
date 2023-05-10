@@ -115,24 +115,14 @@ $totalaulas = $somam[totalmoto] + $somac[totalcarro] + $somaca[totalcaminhao]  +
                        
 <div class="card global-shadow mb-25">
 <div class="ffp align-items-center w-100">
-   
-<div class="row">
-
-<div class="col-2"><strong>Contratadas</strong></div>
-<div class="col-2"><?php echo $controle[totalcontrole] ?></div>
-
-<div class="col-2"><strong>Realizadas</strong></div>
-<div class="col-2">0</div>
-
-<div class="col-2"><strong>Saldo</strong></div>
-<div class="col-2">0</div>
+   sas
 
 </div>
 
                    
 
                      </div> </div>
-<iframe src="agenda.php?id=<?php echo $id ?>&id2=<?php echo $id2?>&veiculo=<?php echo $_POST[veiculo] ?>&instrutor=<?php echo $_POST[instrutor] ?>" width="100%" height="800px">
+<iframe src="agenda.php?id=<?php echo $id ?>&id2=<?php echo $id2?>&veiculo=<?php echo $_POST[veiculo] ?>&instrutor=<?php echo $_POST[instrutor] ?>&cat=<?php echo $_POST[cat] ?>" width="100%" height="1000px">
 </iframe>
 
 

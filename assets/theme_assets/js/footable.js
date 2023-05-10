@@ -50,6 +50,9 @@ FooTable.MyFiltering = FooTable.Filtering.extend({
 
 
 
+
+
+		
 		// create the job title form group and dropdown
 		//var $job_title_form_grp = $('<div/>', {'class': 'form-group dm-select d-flex align-items-center adv-table-searchs__status my-xl-25 my-15 mb-0 me-sm-30 me-0'})
 		//	.append($('<label/>', {'class': 'd-flex align-items-center mb-sm-0 mb-2', text: 'Status'}))

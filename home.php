@@ -1,2 +1,1 @@
-sasasasas sdasd, dsdadadsads, dsadasdasdas  <bR>
-sasasasas sdasd, dsdadadsads, dsadasdasdas sasasasas sdasd, dsdadadsads, dsadasdasdas sasasasas sdasd, dsdadadsads, dsadasdasdas sasasasas sdasd, dsdadadsads, dsadasdasdas sasasasas sdasd, dsdadadsads, dsadasdasdas sasasasas sdasd, dsdadadsads, dsadasdasdas sasasasas sdasd, dsdadadsads, dsadasdasdas sasasasas sdasd, dsdadadsads, dsadasdasdas sasasasas sdasd, dsdadadsads, dsadasdasdas sasasasas sdasd, dsdadadsads, dsadasdasdas sasasasas sdasd, dsdadadsads, dsadasdasdas sasasasas sdasd, dsdadadsads, dsadasdasdas 
+HOME

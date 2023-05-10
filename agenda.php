@@ -145,7 +145,7 @@ foreach (dias_feriados($ano_) as $a) {
 }
 
 //Lógica para armazenar os dados dos alunos da grade
-$sql = "SELECT * from escala_alunos WHERE fk_semana = '$_GET[semana]' and escala_veiculo= '$_GET[veiculo]'";
+$sql = "SELECT * from escala_alunos WHERE fk_semana = '$_GET[semana]' and escala_veiculo= '$_GET[veiculo]' and escala_status <> '3' and escala_cfc = $user[user_empresa]";
 $result = mysqli_query($conn, $sql);
 
 if ($result->num_rows > 0) {
@@ -357,7 +357,7 @@ function nome_dia($nome_dia)
             return "Domingo";
             break;
         case 1:
-            return "Seg.";
+            return "Segunda";
             break;
         case 2:
             return "Terça";
@@ -397,9 +397,9 @@ while ($k <= 6) {
         <tr>
             <td colspan="7" id="ano" style="font-size: 30px"><?php echo (calculaMes($mes) . ' ');
                                                     echo ($ano) ?></td>
-            <td><button class="btn" type="button"><a href="?semana=<?php echo ($semana - 1) ?>&veiculo=<?php echo $_GET[veiculo] ?>&id=<?php echo $_GET[id] ?>&instrutor=<?php echo $_GET[instrutor] ?>&cat=<?php echo $_GET[id2] ?>"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+            <td><button class="btn" type="button"><a href="?semana=<?php echo ($semana - 1) ?>&veiculo=<?php echo $_GET[veiculo] ?>&id=<?php echo $_GET[id] ?>&instrutor=<?php echo $_GET[instrutor] ?>&cat=<?php echo $_GET[cat] ?>"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
-                        </svg></a></button><button class="btn"><a href="?semana=<?php echo ($semana + 1) ?>&veiculo=<?php echo $_GET[veiculo] ?>&id=<?php echo $_GET[id] ?>&instrutor=<?php echo $_GET[instrutor] ?>&cat=<?php echo $_GET[id2] ?>"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                        </svg></a></button><button class="btn"><a href="?semana=<?php echo ($semana + 1) ?>&veiculo=<?php echo $_GET[veiculo] ?>&id=<?php echo $_GET[id] ?>&instrutor=<?php echo $_GET[instrutor] ?>&cat=<?php echo $_GET[cat] ?>"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
                         </svg></a>
                 </button>
@@ -498,7 +498,7 @@ while ($k <= 6) {
                             <input type="hidden" name="dia_aluno" value="' . $j . '">
                             <input type="hidden" name="data_aluno" id="'.$j . '">
                             <input type="hidden" name="aluno" value="'.$_GET[id]. '">
-                            <input type="hidden" name="cat" value="'.$_GET[id2]. '">
+                            <input type="hidden" name="cat" value="'.$_GET[cat]. '">
                             <div id="caixa'.$horario_inicio.$horario_fim.$semana.$j.'" style="display:block" >
                             
                             
@@ -547,7 +547,7 @@ echo '
     <input type="hidden" name="veiculo" value="'.$_GET[veiculo].'">
     <input type="hidden" name="instrutor" value="'.$_GET[instrutor].'">
     <input type="hidden" name="escala" value="'.$dados[escala_id].'">
-    <input type="hidden" name="cat" value="'.$_GET[id2]. '">
+    <input type="hidden" name="cat" value="'.$_GET[cat]. '">
 
 
    ' ?>
@@ -665,33 +665,39 @@ mysqli_close($sqlin);
            
         
 <br>
-<label for="countryOption" class="il-gray fs-14 fw-500 align-center mb-10"><strong>Ações</strong></label>
-<select class="form-control px-15" required id="countryOption">
-<option value="">Informe</option>
-<?php
-$sqlma= "SELECT * FROM motivos_ajustes_agenda WHERE motivo_ajuste_aula_status = '1'";
-$exema = mysqli_query($conn, $sqlma);
-while ($ma = mysqli_fetch_array($exema)) {
+
+
+<label for="countryOption" class="il-gray fs-14 fw-500 align-center mb-10"><strong>Ações</strong></label> <br><br>
+
+
+<input type="checkbox" id="chkCancelar<?php echo $horario_inicio.$horario_fim.$semana.$j ?>" name="scales" >
+Cancelar Agendamento
+
+
+<div id="divCancelar<?php echo $horario_inicio.$horario_fim.$semana.$j ?>"  runat="server" style="display:none">
+
+
+<?php 
+
+echo "<SELECT NAME='motivo' SIZE='1' required class='form-control'>
+
+<OPTION VALUE='' SELECTED> Informe o motivo ";
+// Selecionando os dados da tabela em ordem decrescente
+$sql = "SELECT * FROM motivos_ajustes_agenda where motivo_ajuste_aula_status = '1'";
+// Executando $sql e verificando se tudo ocorreu certo.
+$resultado = mysqli_query($conn, $sql);
+//Realizando um loop para exibi&ccedil;&atilde;o de todos os dados 
+while ($linha=mysqli_fetch_array($resultado)) {
+echo "<OPTION VALUE='".$linha['motivo_ajuste_aula_id']."' ";
+echo ">".$linha['motivo_ajuste_aula_motivo'];
+}
+echo "</SELECT>";
 ?>
 
-  <option value="<?php echo $ma['motivo_ajuste_aula_id'] ?>"><?php echo $ma['motivo_ajuste_aula_motivo'] ?></option>
-
-  <?php
-mysqli_close($sqlma);
-} ?>
-
-</select>
-                               
-         
-      
-      <div class="modal-footer">
-      <button type="submit" class="btn btn-success btn-outlined btn-sm" data-bs-dismiss="modal">Sim</button>
-                   
-         <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Fechar</button>
-      </div>
-   </div>
+<br>
+<input type="text" class="form-control"  required name="justificativa" placeholder="Informe uma Justificativa">
+<br>
 </div>
-
 <?php
 
 echo '<input type="hidden" name="horario_inicio" value="' . date('H:i', $horario_inicio) . '">
@@ -699,19 +705,55 @@ echo '<input type="hidden" name="horario_inicio" value="' . date('H:i', $horario
 <input type="hidden" name="semana_aluno" value="' . $semana . '">
 <input type="hidden" name="dia_aluno" value="' . $j . '">
 <input type="hidden" name="data_aluno" id="'.$j . '">
-<input type="hiddena" name="aluno" value="'.$_GET[id] . '">
+<input type="hidden" name="aluno" value="'.$_GET[id] . '">
 <input type="hidden" name="modal" value="'.$horario_inicio.$horario_fim.$semana.$j. '">
+<input type="hidden" name="agendamento" value="'.$dadosea[id_escala_aluno]. '">
+
 
 <div id="caixa'.$horario_inicio.$horario_fim.$semana.$j.'" style="display:block" >'
 
 ?>
-</form>
+      
+      <div class="modal-footer">
+
+
+      <button type="submit" id="btn<?php echo $horario_inicio.$horario_fim.$semana.$j ?>" disabled class="btn btn-success btn-outlined btn-sm" data-bs-dismiss="modal">Salvar</button>
+                   
+         <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Fechar</button>
+      </div>
+   </div>
 </div>
+
+</div>
+</div>
+</form>
 <!-- FIM  MODAL ACOES  -->
 
 
 
 <script>
+
+
+
+
+////  check box debito
+$('#chkCancelar<?php echo $horario_inicio.$horario_fim.$semana.$j ?>').on('change', function () {
+    if ($(this).is(':checked')) {
+        $('#divCancelar<?php echo $horario_inicio.$horario_fim.$semana.$j ?>').css('display', 'block');
+        $('#btn<?php echo $horario_inicio.$horario_fim.$semana.$j ?>').attr('disabled', false);
+
+    }
+    else {
+        $("#divCancelar<?php echo $horario_inicio.$horario_fim.$semana.$j ?>").css('display', 'none');
+        $('#btn<?php echo $horario_inicio.$horario_fim.$semana.$j ?>').attr('disabled', true);
+
+
+
+    }
+});
+
+
+
 $(document).ready(function() {
  $("#editar<?php echo $horario_inicio.$horario_fim.$semana.$j ?>").submit(function(){
 var formData = new FormData(this);
@@ -726,7 +768,7 @@ var formData = new FormData(this);
     success: function(msg){
       $("#results2<?php echo $horario_inicio.$horario_fim.$semana.$j ?>").empty();
       $("#results2<?php echo $horario_inicio.$horario_fim.$semana.$j ?>").append(msg);
-      document.getElementById("aberto").style.display = "none";
+      document.getElementById("aberto<?php echo $horario_inicio.$horario_fim.$semana.$j ?>").style.display = "none";
 
 
     }
@@ -740,14 +782,9 @@ var formData = new FormData(this);
 <?php
 
 
-
-
-
-
-
                         echo  '<td>' 
                         
-                       . '<div id="aberto" style="display:block">'
+                       . '<div id="aberto'. $horario_inicio.$horario_fim.$semana.$j.'" style="display:block">'
 
                         . $primeiroNome .  ' <br>'. $ultimoNome .  '
                         <i class="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#modal-acoes'.$horario_inicio.$horario_fim.$semana.$j.'"></i> 

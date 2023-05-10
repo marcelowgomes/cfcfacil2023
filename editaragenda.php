@@ -5,6 +5,12 @@ $iduser = $_SESSION['id_user'];
 $sqluser = "SELECT * FROM usuarios WHERE id_user = '$iduser'";
 $exeuser = mysqli_query($conn, $sqluser);
 $user = mysqli_fetch_array($exeuser);
+
+$datahora =  date('Y-m-d h:i:s');
+
+$conn->query("update escala_alunos set escala_status = '3',	justificativa_cancelada= '$_POST[justificativa]', motivo_cancelada= '$_POST[motivo]' ,  usuario_cancelou = '$user[id_user]' , escala_data_cancelou = '$datahora'  WHERE id_escala_aluno = $_POST[agendamento] and escala_cfc = $user[user_empresa]  ");
+
+
   ?>
 
 

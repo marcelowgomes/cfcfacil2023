@@ -9,6 +9,8 @@ if (!empty($_SESSION['id_user'])) {
 date_default_timezone_set('America/Sao_Paulo');
 $data = date('Y-m-d');
 $hora = date('H:i:s');
+$datahora =  date('Y-m-d h:i:s');
+
 
 
 // PEGANDO DADOS DO USUARIO

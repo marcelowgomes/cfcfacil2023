@@ -26,7 +26,7 @@ mysqli_close($sqlcontrole);
 
 
 //// CONTROLE DE AULA AGENDADAS 
-$sqlag = "SELECT  * FROM escala_alunos where escala_cfc  = '$user[user_empresa]' and escala_aluno = '$id'  and escala_categoria = '$id2'   ";
+$sqlag = "SELECT  * FROM escala_alunos where escala_cfc  = '$user[user_empresa]' and escala_aluno = '$id'  and escala_categoria = '$id2' and escala_status <>  '3'   ";
 $exeag = mysqli_query($conn, $sqlag);
 $agendadas = mysqli_num_rows($exeag);
 mysqli_close($sqlag);
@@ -96,7 +96,7 @@ $totalaulas = $somam[totalmoto] + $somac[totalcarro] + $somaca[totalcaminhao]  +
   
  
        
-               
+          
       
 
          <div class="container-fluid">
@@ -281,57 +281,259 @@ $a_agender =  $controle[totalcontrole] - $agendadas;
 
 
 
-<div class="modal-basic modal fade show" id="modal-basic" tabindex="-1" role="dialog" aria-hidden="true">
+<br><br>
+         <div class="userDatatable adv-table-table global-shadow border-light-0 w-100 adv-table">
+                  <div class="table-responsive">
+                     <div class="adv-table-table__header">
+                        <h4>Controle de Aulas (Agendadas)</h4><br>
+                        <div class="adv-table-table__button">
+                      
+                        </div>
+                     </div>
+                     <div id="filter-form-container"></div>
 
+<table class="table mb-0 table-borderless" data-sorting="true" data-filter-container="#filter-form-container" data-paging-current="1" data-paging-position="right" data-paging-size="10">
+                        <thead>
+                           <tr class="userDatatable-header">
+                              
+                           <th style="width: 1%">
+                                
+                              </th>
+                              <th>
+                                 <span class="userDatatable-title">Data</span>
+                              </th>
+                              <th>
+                                 <span class="userDatatable-title">Horário</span>
+                              </th>
+                              <th>
+                                 <span class="userDatatable-title">Veículo</span>
+                              </th>
+                              <th>
+                                 <span class="userDatatable-title">Instrutor</span>
+                              </th>
+                              <th data-type="html" data-name='position'>
+                                 <span class="userDatatable-title">Status</span>
+                              </th>
+                            
+                             
+                              
+                           </tr>
+                        </thead>
+                  
+
+   
+
+<?php
+$sqla = "SELECT * FROM escala_alunos ea INNER JOIN veiculos v ON ea.escala_veiculo = v.id_veiculo 
+WHERE ea.escala_cfc = '$user[user_empresa]' and ea.escala_aluno = '$id' and ea.escala_categoria = $id2 order by escala_data_aula   ";
+$exea = mysqli_query($conn, $sqla);
+while( $aula = mysqli_fetch_array($exea)) {
+
+$sqlm = "SELECT * FROM motivos_ajustes_agenda WHERE motivo_ajuste_aula_id = '$aula[motivo_cancelada]'  ";
+$exem = mysqli_query($conn, $sqlm);
+$motivo = mysqli_fetch_array($exem);
+
+$sqlq = "SELECT * FROM usuarios WHERE id_user = '$aula[usuario_cancelou]'  ";
+$exeq = mysqli_query($conn, $sqlq);
+$quem = mysqli_fetch_array($exeq);
+?> 
+
+
+<!-- INICIO MODAL INFO AULAS --> 
+<div class="modal-basic modal fade show" id="modal-basic<?php echo $aula[id_escala_aluno] ?>" tabindex="-1" role="dialog" aria-hidden="true">
 
             <div class="modal-dialog modal-md" role="document">
                <div class="modal-content modal-bg-white ">
                   <div class="modal-header">
-
-
-
-                     <h6 class="modal-title">Agendar Aulas</h6>
+                     <h6 class="modal-title">Detalhes</h6>
                      <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                         <img src="img/svg/x.svg" alt="x" class="svg">
                      </button>
                   </div>
                   <div class="modal-body">
-                  <form action="agendar_aulas_aluno/<?php echo $id ?>/<?php echo $id2 ?>" method="POST">
-<label> Escolha o Veículo </label>
+                  <?php if ($aula[escala_status] == '3') { ?> 
 
-<select name="veiculo" class="form-control" required>
-  <option value="">Informe</option>
-<?php 
-$sqlv= "SELECT * FROM veiculos where veiculo_cfc = '$user[user_empresa]' and veiculo_status = '1' and veiculo_categoria = $id2 ";
-$exev = mysqli_query($conn, $sqlv);
-while($veiculo = mysqli_fetch_array($exev)) {
-?>
-  <option value="<?php echo $veiculo[id_veiculo] ?>" ><?php echo $veiculo[placa_veiculo] ?></option>
-<?php } ?>
-</select>
+                    <div align="center">  <button class="btn btn-danger"> Aula Cancelada </button> </div>
 
-<label> Escolha o Instrutor </label>
-<select name="instrutor" required  class="form-control">
-  <option value="">Informe </option>
-<?php 
-$sqli= "SELECT * FROM colaboradores where pratico = 1 and status = 1 and cod_cfc = '$user[user_empresa]' ";
-$exei = mysqli_query($conn, $sqli);
-while($instrutor = mysqli_fetch_array($exei)) {
-?>
-  <option value="<?php echo $instrutor[id] ?>" ><?php echo $instrutor[nome] ?></option>
-<?php } ?>
-</select>
 
+                    <label><strong>Data</strong></label><br>
+                    <?php  echo (new \DateTimeImmutable($$motivo[escala_data_cancelou]))->format('d/m/Y H:i:s');  ?>
+                    <br>
+                    <label><strong>Quem cancelou</strong></label><br>
+                    <?php echo $quem[user_nome] ?>
+                    <br>
+                    <label><strong>Motivo</strong></label><br>
+                    <?php echo $motivo[motivo_ajuste_aula_motivo] ?>
+                    <br>
+                    
+                     <label><strong>Justificativa</strong></label><br>
+                     <?php echo $aula[justificativa_cancelada] ?>
+                     
+                     <?php } ?>
+
+
+
+                  <?php if ($aula[escala_status] == '2') { ?> Realizada <?php } ?>
 
 
 
                   </div>
                   <div class="modal-footer">
-                     <button type="submit" class="btn btn-primary btn-sm">Avançar</button>
                      <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Fechar</button>
                   </div>
                </div>
             </div>
+         </div>
+        <!-- FIM MODAL INFO AULAS --> 
+
+<tbody>      
+<tr>
+<td>
 
 
-         </div></form> 
+
+
+<?php if ($aula[escala_status] <> '1') { ?> 
+<i class="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#modal-basic<?php echo $aula[id_escala_aluno] ?>"></i> <?php } ?>
+                        
+                        
+                        </td>
+                              <td>
+                                 <div class="d-flex">
+                                    <div class="userDatatable-inline-title">
+                                       
+                                          <h6>  <?php echo date('d/m/Y', strtotime($aula[escala_data_aula])); ?> </h6>
+                                      
+                                    </div>
+                                 </div>
+                              </td>
+
+                              <td>
+<div class="userDatatable-inline-title">
+<h6><?php echo $aula[horario_inicio_escala_aluno]; ?> às <?php echo $aula[horario_fim_escala_aluno]; ?></h6>
+</div>                  
+
+                                 </td>
+
+
+                              <td>
+                                 <div class="userDatatable-content">
+<?php echo $aula[modelo_veiculo]; ?> -  <?php echo $aula[placa_veiculo]; ?></div>
+                              </td>
+                              <td>
+                                 <div class="userDatatable-content">
+                                 <?php echo $aula[nome]; ?>     
+
+
+
+
+                                 
+                                 </div>
+                              </td>
+                              
+                            
+                              <td>
+                                 <div class="userDatatable-content d-inline-block">
+
+                               
+                                   <?php if ($aula[escala_status] == '1') { ?> 
+                                    <span class="bg-opacity-info  color-info rounded-pill userDatatable-content-status active">Agendada</span>
+                                  
+                                    <?php  } ?> 
+
+                                    <?php if ($aula[escala_status] == '2') { ?> 
+                                       
+                                      
+                                       <span class="bg-opacity-success  color-success rounded-pill userDatatable-content-status active">Realizada</span> 
+                                   
+                                       
+                                       <?php } ?>
+                                      
+                                       <?php if ($aula[escala_status] == '3') { ?> 
+                                       
+                                       <span class="bg-opacity-danger  color-danger rounded-pill userDatatable-content-status active">Cancelada</span>
+                                   
+                                       
+                                       <?php } ?>
+
+                                    
+                                 </div>
+                              </td> 
+                              
+                              
+                        </tr>
+                      
+               
+                        </tbody>
+
+
+
+<?php mysqli_close($sqla);  } ?>
+
+                              </table>
+                           </div>
+                        </div>
+
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+         
+
+<div class="modal-basic modal fade show" id="modal-basic" tabindex="-1" role="dialog" aria-hidden="true">
+
+
+<div class="modal-dialog modal-md" role="document">
+   <div class="modal-content modal-bg-white ">
+      <div class="modal-header">
+
+
+
+         <h6 class="modal-title">Agendar Aulas</h6>
+         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <img src="img/svg/x.svg" alt="x" class="svg">
+         </button>
+      </div>
+      <div class="modal-body">
+      <form action="agendar_aulas_aluno/<?php echo $id ?>/<?php echo $id2 ?>" method="POST">
+<label> Escolha o Veículo </label>
+
+<select name="veiculo" class="form-control" required>
+<option value="">Informe</option>
+<?php 
+$sqlv= "SELECT * FROM veiculos where veiculo_cfc = '$user[user_empresa]' and veiculo_status = '1' and veiculo_categoria = $id2 ";
+$exev = mysqli_query($conn, $sqlv);
+while($veiculo = mysqli_fetch_array($exev)) {
+?>
+<option value="<?php echo $veiculo[id_veiculo] ?>" ><?php echo $veiculo[placa_veiculo] ?></option>
+<?php } ?>
+</select>
+
+<label> Escolha o Instrutor </label>
+<select name="instrutor" required  class="form-control">
+<option value="">Informe </option>
+<?php 
+$sqli= "SELECT * FROM colaboradores where pratico = 1 and status = 1 and cod_cfc = '$user[user_empresa]' ";
+$exei = mysqli_query($conn, $sqli);
+while($instrutor = mysqli_fetch_array($exei)) {
+?>
+<option value="<?php echo $instrutor[id] ?>" ><?php echo $instrutor[nome] ?></option>
+<?php } ?>
+</select>
+
+
+
+
+      </div>
+      <div class="modal-footer">
+         <input name="cat" type="hidden" value="<?php echo $id2 ?>" ?>
+         <button type="submit" class="btn btn-primary btn-sm">Avançar</button>
+         <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Fechar</button>
+      </div>
+   </div>
+</div>
+
+
+</div></form> 
