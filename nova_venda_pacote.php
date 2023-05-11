@@ -77,7 +77,7 @@ preg_match($pattern, $dados["aluno_telefones"], $matches);
                     <h4>Nova Venda -   <?php echo ($dados['aluno_nome']) ?> </h4>
                     <div class='mt-2 d-flex'>
         <p><strong>CPF: </strong><?php echo ($dados['aluno_cpf']) ?></p>&nbsp; -
-        <p class='mx-2'><strong>Telefone: </strong><?php echo ($matches[0]) ?></p>
+        <p class='mx-2'><strong>Telefone: </strong><?php echo ($dados['aluno_t1']) ?></p>
       </div>
                  </div>  </div></div></div>
 

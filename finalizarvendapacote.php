@@ -27,7 +27,7 @@ if ($crediarioinformado <> $soma) {
 ?>
 
 <div class="alert alert-danger" role="alert">
-Erro valores crediario</div>
+Erro valores crediario <?php echo $crediarioinformado ?> <?php echo $soma ?> </div>
 
 
 
@@ -114,9 +114,9 @@ $valor  = $_POST['valor'];
 $quant_linhas = count($produto);
   for ($i=0; $i<$quant_linhas; $i++) {
  @$conn->query($insert = "INSERT INTO carrinho (carrinho_item,carrinho_categoria,carrinho_subcategoria, carrinho_qtd,carrinho_aluno,carrinho_pedido,carrinho_status,carrinho_usuario,carrinho_cfc, carrinho_ocorrencia, 
- carrinho_valorun,carrinho_desconto, carrinho_acrescimo,carrinho_custo,carrinho_tipo) 
+ carrinho_valorun,carrinho_desconto, carrinho_acrescimo,carrinho_tipo) 
  VALUES ('$produto[$i]','$categoria[$i]','$subcategoria[$i]','$qtd[$i]','$_POST[aluno2]','$id_venda','2','$user[id_user]','$user[user_empresa]',
- 'Entrada','0.00','0.00','0.00','0.00','Pacote')");
+ 'Entrada','0.00','0.00','0.00','Pacote')");
 	  
 	//echo $insert;
   }

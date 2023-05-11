@@ -17,7 +17,7 @@ if (!empty($_SESSION['id_user'])) {
         $cor_veiculo = $_POST['cor'];
         $instrutor_veiculo = $_POST['instrutor'];
         $km_inicial_veiculo = $_POST['km_inicial'];
-        $modelo = $_POST['modelo'];
+        $modelo = $_POST['modelo_veiculo'];
         $categoria = $_POST['tipo'];
     
         $sql = "INSERT INTO veiculos (placa_veiculo, marca_veiculo, tipo_veiculo, ano_fabricacao_veiculo, ano_modelo_veiculo, cor_veiculo,
@@ -32,7 +32,7 @@ if (!empty($_SESSION['id_user'])) {
            <script>
  alert("Cadastro Realizado com sucesso");
 
- window.location.href = "listar_veiculos";
+ window.location.href = "listar_veiculo";
 </script>
 <?php
         }else{

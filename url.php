@@ -23,7 +23,9 @@ if (!empty($_GET['url'])) {
             include('agenda_geral_veiculo.php');
             break;
 
-
+case 'vendas_dia':
+include('vendas_dia.php');
+break;
 
 
 

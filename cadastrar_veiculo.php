@@ -187,7 +187,7 @@ if (!empty($_SESSION['id_user'])) {
     <div class="col-md-6">
         <div class="form-group">
           <label for="tipo">Modelo</label>
-          <input type="text" class="form-control" placeholder="Informe o modelo" id="placa" name="modelo">
+          <input type="text" class="form-control" placeholder="Informe o modelo" id="placa" name="modelo_veiculo">
 
         </div>
 

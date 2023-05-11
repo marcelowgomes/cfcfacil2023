@@ -105,15 +105,10 @@ $totalaulas = $somam[totalmoto] + $somac[totalcarro] + $somaca[totalcaminhao]  +
                   <div class="col-lg-12">
 
                      <div class="breadcrumb-main">
-                        <h4 class="text-capitalize breadcrumb-title"><i class="uil uil-user"></i> Área do Aluno / Controle de Aulas / <?php echo $subcategoria[subcat_produto_nome] ?></h4>
+                        <h4 class="text-capitalize breadcrumb-title"><i class="uil uil-list-ul"></i> Relatórios / Financeiro /  Movimentação do Dia</h4>
                         <div class="breadcrumb-action justify-content-center flex-wrap">
                            <nav aria-label="breadcrumb">
-                           <div class="ap-button button-group d-flex justify-content-center flex-wrap">
-                              
-                                   <a href="perfil_aluno/<?php echo $id ?>"> <button type="button" class="border  px-25 bg-info text-white radius-md">
-                                   <i class="fa fa-arrow-left" aria-hidden="true"></i>&ensp;Voltar</button> </a>
-
-                                    
+                           <div class="ap-button button-group d-flex justify-content-center flex-wrap">                                    
                                  </div>
 
 
@@ -124,124 +119,8 @@ $totalaulas = $somam[totalmoto] + $somac[totalcarro] + $somaca[totalcaminhao]  +
                      </div>
 
                   </div>
-                  <div class="col-xxl-3 col-md-4  ">
-                     <aside class="profile-sider">
-                        <!-- Profile Acoount -->
-                        <div class="card mb-25">
-                           <div class="card-body text-center pt-sm-30 pb-sm-0  px-25 pb-0">
-
-                              <div class="account-profile">
-                                 <div class="ap-img w-100 d-flex justify-content-center">
-                                    <!-- Profile picture image-->
-                                    <div class="ap-img pro_img_wrapper">
-                                        
-                                          <!-- Profile picture image-->
-                                          <label for="file-upload">
-                                             <img class="ap-img__main rounded-circle wh-120 bg-lighter d-flex" src="img/author/profile.png" alt="profile">
-                                            
-                                          </label>
-                                       </div>                                 </div>
-                                 <div class="ap-nameAddress pb-3 pt-1">
-                                    <h5 class="ap-nameAddress__title"><?php echo $aluno['aluno_nome'] ?></h5>
-                                    <p class="ap-nameAddress__subTitle fs-14 m-0"><?php echo $aluno['aluno_cpf'] ?></p>
-                                    <p class="ap-nameAddress__subTitle fs-14 m-0">
-                                     Processo categoria: &nbsp; <strong> <?php echo $aluno['aluno_categoria_pretendida'] ?></strong>
-                                    </p>
-                                 </div>
-                                
-                              </div>
-
-                           </div>
-                        </div>
-                        <!-- Profile Acoount End -->
-
-
-
-
-
-                        <!-- Profile User Bio -->
-                        <div class="card mb-25">
-                          
-                           <div class="user-info border-bottom">
-                              <div class="card-header border-bottom-0 pt-sm-25 pb-sm-0  px-md-25 px-3">
-                                 <div class="profile-header-title">
-Controle de aulas                                </div>
-                              </div>
-                              <div class="card-body pt-md-1 pt-0">
-                                 
- 
-                              <div class="row"> 
-
-
-<div class="col-2"><a href="gerenciar_aulas/<?php echo $id ?>/1"><i class="fa fa-motorcycle" aria-hidden="true"></i></a></div>
-<div class="col-8"><a href="gerenciar_aulas/<?php echo $id ?>/1">Moto</a></div>
-<div class="col-2"><a href="gerenciar_aulas/<?php echo $id ?>/1"><?php echo $somam['totalmoto'] ?></a></div>
-
-
-<div class="col-2"><a href="gerenciar_aulas/<?php echo $id ?>/2"><i class="fa fa-car" aria-hidden="true"></i></a></div>
-<div class="col-8"><a href="gerenciar_aulas/<?php echo $id ?>/2">Carro</a></div>
-<div class="col-2"><a href="gerenciar_aulas/<?php echo $id ?>/2"><?php echo $somac['totalcarro'] ?></a></div>
-
-<div class="col-2"><a href="gerenciar_aulas/<?php echo $id ?>/3"><i class="fa fa-truck" aria-hidden="true"></i></a></div>
-<div class="col-8"><a href="gerenciar_aulas/<?php echo $id ?>/3">Caminhão</a></div>
-<div class="col-2"><a href="gerenciar_aulas/<?php echo $id ?>/3"><?php echo $somaca['totalcaminhao'] ?></a></div>
-
-<div class="col-2"><a href="gerenciar_aulas/<?php echo $id ?>/4"><i class="fas fa-bus-alt" aria-hidden="true"></i></a></div>
-<div class="col-8"><a href="gerenciar_aulas/<?php echo $id ?>/4">Ônibus</a></div>
-<div class="col-2"><a href="gerenciar_aulas/<?php echo $id ?>/4"><?php echo $somao['totalonibus'] ?></a></div>
-
-<div class="col-2"><a href="gerenciar_aulas/<?php echo $id ?>/5"><i class="fas fa-truck-moving" aria-hidden="true"></i></a></div>
-<div class="col-8"><a href="gerenciar_aulas/<?php echo $id ?>/5">Carreta</a></div>
-<div class="col-2"><a href="gerenciar_aulas/<?php echo $id ?>/5"><?php echo $somacar['totalcarreta'] ?></a></div>
-
-<div class="col-2"><a href="gerenciar_aulas/<?php echo $id ?>/6"><i class="la la-motorcycle" aria-hidden="true"></i></a></div>
-<div class="col-8"><a href="gerenciar_aulas/<?php echo $id ?>/6">Ciclomotor</a></div>
-<div class="col-2"><a href="gerenciar_aulas/<?php echo $id ?>/6"><?php echo $somaci['totalclicomotor'] ?></a></div>
-
-<div class="col-2"><a href="gerenciar_aulas/<?php echo $id ?>/13"><i class="fa fa-desktop" aria-hidden="true"></i></a></div>
-<div class="col-8"><a href="gerenciar_aulas/<?php echo $id ?>/13">Simulador</a></div>
-<div class="col-2"><a href="gerenciar_aulas/<?php echo $id ?>/13"><?php echo $somas['totalsimulador'] ?></a></div>
-
-
-</div>
-
-
-                                
-                           
-                              </div>
-                           </div>
-                        
-                     </aside>
-              
-
-                        <!-- Profile User Bio -->
-                        <div class="card mb-25">
-                          
-                           <div class="user-info border-bottom">
-                              <div class="card-header border-bottom-0 pt-sm-25 pb-sm-0  px-md-25 px-3">
-                                 <div class="profile-header-title">
-Dados de contato                                 </div>
-                              </div>
-                              <div class="card-body pt-md-1 pt-0">
-                                 <div class="user-content-info">
-                                    <p class="user-content-info__item">
-                                       <img class="svg" src="img/svg/mail.svg" alt="mail"><?php echo $aluno['aluno_email'] ?>
-                                    </p>
-                                    <p class="user-content-info__item">
-                                       <img src="img/svg/phone.svg" alt="phone" class="svg"><?php echo $aluno['aluno_t1'] ?>
-                                    </p>
-                                    
-                                 </div>
-                              </div>
-                        
-                           </div>
-                          
-                        </div>
-                        <!-- Profile User Bio End -->
-                     </aside>
-                  </div>
-
-                  <div class="col-xxl-9 col-md-8">
+                  
+                  <div class="col-xxl-12 col-md-8">
                      <!-- Tab Menu -->
                        
 <div class="card global-shadow mb-25">
@@ -273,9 +152,7 @@ $a_agender =  $controle[totalcontrole] - $agendadas;
                    
 
                      </div> </div>
-<?php if($a_agender == '0') { } else { ?>
-   <div align="right"><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-basic"><i class="fas fa-calendar-plus"></i> Agendar Novas Aulas </button></div>
-<?php } ?>
+
 
 
 
@@ -285,7 +162,7 @@ $a_agender =  $controle[totalcontrole] - $agendadas;
          <div class="userDatatable adv-table-table global-shadow border-light-0 w-100 adv-table">
                   <div class="table-responsive">
                      <div class="adv-table-table__header">
-                        <h4>Controle de Aulas (Agendadas)</h4><br>
+                       
                         <div class="adv-table-table__button">
                       
                         </div>
@@ -298,19 +175,27 @@ $a_agender =  $controle[totalcontrole] - $agendadas;
                               
                           
                               <th>
+                                 <span class="userDatatable-title">Tipo</span>
+                              </th>
+                              <th>
                                  <span class="userDatatable-title">Data</span>
                               </th>
                               <th>
-                                 <span class="userDatatable-title">Horário</span>
+                                 <span class="userDatatable-title">Para</span>
                               </th>
                               <th>
-                                 <span class="userDatatable-title">Veículo</span>
+                                 <span class="userDatatable-title">Ação</span>
                               </th>
                               <th>
-                                 <span class="userDatatable-title">Instrutor</span>
+                                 <span class="userDatatable-title">Colaborador</span>
                               </th>
-                              <th data-type="html" data-name='position'>
-                                 <span class="userDatatable-title">Status</span>
+
+                              <th>
+                                 <span class="userDatatable-title">Forma</span>
+                              </th>
+
+                              <th>
+                                 <span class="userDatatable-title">Valor</span>
                               </th>
                             
                               <th style="width: 1%">
@@ -324,12 +209,11 @@ $a_agender =  $controle[totalcontrole] - $agendadas;
    
 
 <?php
-$sqla = "SELECT * FROM escala_alunos ea INNER JOIN veiculos v ON ea.escala_veiculo = v.id_veiculo 
-WHERE ea.escala_cfc = '$user[user_empresa]' and ea.escala_aluno = '$id' and ea.escala_categoria = $id2 order by escala_data_aula   ";
+$sqla = "SELECT * FROM caixa c where caixa_cfc = $user[user_empresa] and caixa_estorno = '1'     ";
 $exea = mysqli_query($conn, $sqla);
 while( $aula = mysqli_fetch_array($exea)) {
 
-$sqlm = "SELECT * FROM motivos_ajustes_agenda WHERE motivo_ajuste_aula_id = '$aula[motivo_cancelada]'  ";
+$sqlm = "SELECT * FROM alunos WHERE motivo_ajuste_aula_id = '$aula[motivo_cancelada]'  ";
 $exem = mysqli_query($conn, $sqlm);
 $motivo = mysqli_fetch_array($exem);
 
@@ -389,11 +273,18 @@ $quem = mysqli_fetch_array($exeq);
 <tbody>      
 <tr>
 
+<td>
+ <?php if ($aula[caixa_aluno] <> '') { ?> A<?php } ?>
+ <?php if ($aula[caixa_colaborador] <> '') { ?> C<?php } ?>
+ <?php if ($aula[caixa_fornecedor] <> '') { ?> F<?php } ?>
+ <?php if ($aula[caixa_veiculo] <> '') { ?> V<?php } ?>
+
+</td>
                               <td>
                                  <div class="d-flex">
                                     <div class="userDatatable-inline-title">
                                        
-                                          <h6>  <?php echo date('d/m/Y', strtotime($aula[escala_data_aula])); ?> </h6>
+                                          <h6>  <?php echo date('d/m/Y', strtotime($aula[caixa_data])); ?> </h6>
                                       
                                     </div>
                                  </div>

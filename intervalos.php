@@ -43,7 +43,7 @@
 
 <div class="col-2">
 <?php echo $x ?>
-<input name="intervalos[]" required type="hiddena" class="form-control" value="<?php echo $x ?>">
+<input name="intervalos[]" required type="hidden" class="form-control" value="<?php echo $x ?>">
 
 </div>
 <div class="col-3">
