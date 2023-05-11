@@ -118,7 +118,9 @@ $empresa = mysqli_fetch_array($ar);
          <!-- ends: navbar-left -->
          <div class="navbar-right">
             <ul class="navbar-right__menu">
-               <li class="nav-search">
+
+
+             <!--    <li class="nav-search">
                   <a href="#" class="search-toggle">
                      <i class="uil uil-search"></i>
                      <i class="uil uil-times"></i>
@@ -128,7 +130,11 @@ $empresa = mysqli_fetch_array($ar);
                      <input class="form-control me-sm-2 box-shadow-none" type="search" placeholder="Search..." aria-label="Search">
                   </form>
                </li>
-               <li class="nav-message">
+
+-->
+
+
+                  <!--   <li class="nav-message">
                   <div class="dropdown-custom">
                      <a href="javascript:;" class="nav-item-toggle icon-active">
                         <img class="svg" src="img/svg/message.svg" alt="img">
@@ -226,7 +232,9 @@ $empresa = mysqli_fetch_array($ar);
                      </div>
                   </div>
                </li>
-               <!-- ends: nav-message -->
+-->
+
+               <!-- ends: nav-message
                <li class="nav-notification">
                   <div class="dropdown-custom">
                      <a href="javascript:;" class="nav-item-toggle icon-active">
@@ -312,7 +320,9 @@ $empresa = mysqli_fetch_array($ar);
                      </div>
                   </div>
                </li>
-               <!-- ends: .nav-notification -->
+ -->
+
+               <!-- ends: .nav-notification 
                <li class="nav-settings">
                   <div class="dropdown-custom">
                      <a href="javascript:;" class="nav-item-toggle">
@@ -380,29 +390,15 @@ $empresa = mysqli_fetch_array($ar);
                      </div>
                   </div>
                </li>
-               <!-- ends: .nav-support -->
-               <li class="nav-flag-select">
-                  <div class="dropdown-custom">
-                     <a href="javascript:;" class="nav-item-toggle"><img src="img/flag.png" alt="" class="rounded-circle"></a>
-                     <div class="dropdown-parent-wrapper">
-                        <div class="dropdown-wrapper dropdown-wrapper--small">
-                           <a href=""><img src="img/eng.png" alt=""> English</a>
-                           <a href=""><img src="img/ger.png" alt=""> German</a>
-                           <a href=""><img src="img/spa.png" alt=""> Spanish</a>
-                           <a href=""><img src="img/tur.png" alt=""> Turkish</a>
-                           <a href=""><img src="img/iraq.png" alt=""> Arabic</a>
-                        </div>
-                     </div>
-
-                  </div>
-               </li>
+            ends: .nav-support -->
+               
                <!-- ends: .nav-flag-select -->
                <li class="nav-author">
                   <div class="dropdown-custom">
-                     <a href="javascript:;" class="nav-item-toggle"><img src="img/author-nav.jpg" alt="" class="rounded-circle">
-                        <span class="nav-item__title">Danial<i class="las la-angle-down nav-item__arrow"></i></span>
+                     <!-- <a href="javascript:;" class="nav-item-toggle"><img src="img/author-nav.jpg" alt="" class="rounded-circle"> -->
+                        <span class="nav-itesm__title"><?php echo $user[user_nome] ?><i class="las la-angle-down nav-item__arrow"></i></span>
                      </a>
-                     <div class="dropdown-parent-wrapper">
+                    <!-- <div class="dropdown-parent-wrapper">
                         <div class="dropdown-wrapper">
                            <div class="nav-author__info">
                               <div class="author-img">
@@ -441,7 +437,7 @@ $empresa = mysqli_fetch_array($ar);
                                  <i class="uil uil-sign-out-alt"></i> Sign Out</a>
                            </div>
                         </div>
-                        <!-- ends: .dropdown-wrapper -->
+                        ends: .dropdown-wrapper -->
                      </div>
                   </div>
                </li>
@@ -567,7 +563,22 @@ $empresa = mysqli_fetch_array($ar);
                      </ul>
                   </li>
 
-
+                  <li class="has-child">
+                     <a href="#">
+                        <span class="nav-icon uil uil-list-ul"></span>
+                        <span class="menu-text">Relatorios</span>
+                        <span class="toggle-icon"></span>
+                     </a>
+                     <ul>
+                        <li>
+                           <a href="cadastrar_veiculo">Vendas do Dia</a>
+                        </li>
+                        <li>
+                           <a href="listar_veiculo">Vendas Geral</a>
+                        </li>
+                        
+                     </ul>
+                  </li>
 
 
                  
@@ -620,12 +631,12 @@ $empresa = mysqli_fetch_array($ar);
                         <div class="row">
                            <div class="col-md-6">
                               <div class="footer-copyright">
-                                 <p><span>© 2023</span><a href="#">Sovware</a>
+                                 <p><span>© 2023</span><a href="home">TAGS CRIATIVA</a>
                                  </p>
                               </div>
                            </div>
                            <div class="col-md-6">
-                              <div class="footer-menu text-end">
+                             <!--  <div class="footer-menu text-end">
                                  <ul>
                                     <li>
                                        <a href="#">About</a>
@@ -638,7 +649,7 @@ $empresa = mysqli_fetch_array($ar);
                                     </li>
                                  </ul>
                               </div>
-                              <!-- ends: .Footer Menu -->
+                             ends: .Footer Menu -->
                            </div>
                         </div>
                      </div>
