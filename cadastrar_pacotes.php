@@ -144,7 +144,7 @@ while($pacote = mysqli_fetch_array($exe)) {
 <div class="col-2"> R$ <?php echo $pacote[pacote_valor] ?>  </div>
 <div class="col-2"> <?php if($pacote[pacote_status] == '1' ) { ?> <span class="badge badge-round badge-success badge-lg">Sim</span>
  <?php } else { ?> <span class="badge badge-round badge-danger badge-lg">Não</span> <?php } ?>  </div>
-<div class="col-2">  <a href="add_itens_pacote/<?php echo $pacote[pacote_id] ?>"> <span class="badge badge-round badge-info badge-lg">Add Itens</span> </a> <a href="editar_pacote/<?php echo $pacote[pacote_id] ?>">  <span class="badge badge-round badge-warning badge-lg">Editar</span> </a> </div>
+<div class="col-2">  <a href="add_itens_pacote/<?php echo $pacote[pacote_id] ?>"> <span class="badge badge-round badge-info badge-lg">Add Itens</span> </a> <a href="cadastrar_pacotes/editar/<?php echo $pacote[pacote_id] ?>">  <span class='badge badge-round badge-warning badge-lg data-bs-toggle="modal" data-bs-target="#modal-edicao-pacot'>Editar</span> </a> </div>
 
 <?php } ?>
 
@@ -158,10 +158,69 @@ while($pacote = mysqli_fetch_array($exe)) {
 </div>
 </div>
 </div>
-
+<?php
+if(isset($metodo) && $metodo == "editar"){
+                $sql_pacote = "SELECT * FROM pacotes WHERE pacote_id = '$id'";
+                $pacote = mysqli_query($conn, $sql_pacote);
+                $dados = $pacote->fetch_assoc();
+            ?>
+            
+                <div class="modal fade show" id="modal-edicao-pacot" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-sm modal-info  modal-lg" role="document">
+                        <div class="modal-content ">
+                            <div class="modal-body">
+                                <div class="modal-info-body d-flex">
+                                    <div class="modal-info-icon success">
+                                        <img src="img/svg/alert-circle.svg" alt="alert-circle" class="svg">
+                                    </div>
+            
+                                    <div class="modal-info-text">
+                                        <h6>Para editar um Pacote modifique os dados abaixo!</h6>
+                                    </div> 
+                                </div>
+                                <BR>
+                                <form action="editar_pacotes/<?php echo $dados['pacote_id'] ?>" id="verificar" method="post">
+                                <div class="row" id = "dvConteudo"> 
+                                    <div class="col-6">
+                                        <label> Título </label> 
+                                        <input type="text" required class="form-control" name="descricao" id="descricao" value="<?php echo $dados['pacote_descricao'] ?>">
+                                    </div>
+                                    <div class="col-6">
+                                        <label> Valor </label> 
+                                        <input type="text" required class="form-control" name="valor" id="valor" value="<?php echo $dados['pacote_valor'] ?>">
+                                    </div>
+                                    <div class="col-6">
+                                        <label> Disponível </label> 
+                                        <select type="text" required class="form-control" name="status" id="status" value="<?php echo ($dados['pacote_status'] ? 'Sim' : 'Nao') ?>">
+                                          <option value="1">Sim</option>
+                                          <option value="0">Não</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            <div id="results"></div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-light btn-outlined btn-sm" data-bs-dismiss="modal">Cancelar</button>
+                                <button name="atualizado" type="submit" class="btn btn-info btn-outlined btn-sm">Atualizar</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                </div>
+                <script src="assets/vendor_assets/js/jquery/jquery-3.5.1.min.js"></script>
+                <script>
+                    $(document).ready(function(){
+                        $('#modal-edicao-pacot').modal('show')
+                        $('.footer-wrapper').hide()
+                    })
+                </script>
+                <?php
+            }
+?>
 
 
 <script>
+
 
 function MascaraMoeda(objTextBox, SeparadorMilesimo, SeparadorDecimal, e){
     var sep = 0;

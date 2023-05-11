@@ -1,16 +1,19 @@
 <?php
+if (!empty($_SESSION['id_user'])) {
+} else {
+	$_SESSION['msg'] = "Área restrita";
+	header("Location: login.php");
+}
 include_once "bd/conexao.php";
 if (isset($_POST['atualizado'])) {
-    $cpf_colaborador = $_POST['cpf'];
-    $colaborador_administrativo = $_POST['administrativo'];
-    $colaborador_pratico = $_POST['pratico'];
-    $colaborador_teorico = $_POST['teorico'];
+    $colaborador_cpf = $_POST['cpf'];
+    $colaborador_nome = $_POST['nome'];
+    $colaborador_rg = $_POST['rg'];
 
-
-    $sql = "UPDATE colaborador SET cpf_colaborador = '$cpf_colaborador', colaborador_administrativo = '$colaborador_administrativo', colaborador_pratico = '$colaborador_pratico', colaborador_teorico = '$colaborador_teorico' WHERE colaborador_id = '$id'";
+    $sql = "UPDATE colaboradores SET colaborador_cpf = '$colaborador_cpf', colaborador_nome = '$colaborador_nome', colaborador_rg = '$colaborador_rg' WHERE colaborador_id = '$id'";
     if (mysqli_query($conn, $sql)) {
         echo ("<h1>Edição de Colaborador concluida com sucesso!</h1>");
-    } else {
+    } else {    
         echo ("<h1>Houve um erro na edição de Colaborador</h1><br><p>" . $conn->error . "</p>");
     }
 

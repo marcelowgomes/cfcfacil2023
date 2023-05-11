@@ -1,6 +1,25 @@
-﻿<div class="container-fluid">
+﻿<?php
+if (!empty($_SESSION['id_user'])) {
+} else {
+	$_SESSION['msg'] = "Área restrita";
+	header("Location: login.php");
+}
+?>
+
+<div class="container-fluid">
+  <div>
+
+    <div>
+      <h4 style="margin-left: -30px">Novo cadastro fornecedor </h4>
+
+    </div>
+  </div>
+</div>
+</div>
+
+<br>
+<div class="container-fluid" style="background-color: white; border-radius: 10px; padding: 15px">
   <form method="post" action="confirmar_cadastro_fornecedor">
-    <h2 class="my-3">Cadastrar Fornecedores</h2>
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">

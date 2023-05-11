@@ -112,9 +112,6 @@ $totalaulas = $somam[totalmoto] + $somac[totalcarro] + $somaca[totalcaminhao]  +
                                           <!-- Profile picture image-->
                                           <label for="file-upload">
                                              <img class="ap-img__main rounded-circle wh-120 bg-lighter d-flex" src="img/author/profile.png" alt="profile">
-                                             <span class="cross" id="remove_pro_pic">
-                                                <img src="img/svg/camera.svg" alt="camera" class="svg">
-                                             </span>
                                           </label>
                                        </div>                                 </div>
                                  <div class="ap-nameAddress pb-3 pt-1">
@@ -128,6 +125,12 @@ $totalaulas = $somam[totalmoto] + $somac[totalcarro] + $somaca[totalcaminhao]  +
                                     <button type="button" class="border text-capitalize px-25 color-gray transparent radius-md">
                                        <img class="svg" src="img/svg/mail.svg" alt="mail">Enviar Mensagem</button>
                                  </div>
+                                 <form action="trocar_imagem/<?php echo $id ?>" enctype="multipart/form-data" method="post">
+                                 <div style="margin-top: 20px">
+                                    <input type="file" name="imagem_perfil" id="file-upload" style="display:hidden">
+                                    <button type="submit" class="btn btn-primary" style="margin-left: 190px; margin-top:10px">Enviar</button>
+                                 </div>
+                                 </form>
                               </div>
 
                               <div class="card-footer mt-20 pt-20 pb-20 px-0 bg-transparent">

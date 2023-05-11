@@ -1,15 +1,26 @@
-﻿
-<?php 
+﻿<?php
 if (!empty($_SESSION['id_user'])) {
 } else {
     $_SESSION['msg'] = "Área restrita";
     header("Location: logar.php");
 }
 
-?>      
+?>
+
 <div class="container-fluid">
+    <div>
+
+        <div>
+            <h4 style="margin-left: -30px">Novo cadastro colaborador </h4>
+
+        </div>
+    </div>
+</div>
+</div>
+
+<br>
+<div class="container-fluid" style="background-color: white; border-radius: 10px; padding: 15px">
     <form method="post" action="mais_informacoes_colaboradores">
-        <h2 class="my-3">Cadastrar Colaborador</h2>
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">

@@ -7,12 +7,17 @@ $fornecedores = mysqli_query($conn, $sql);
 
 <div class="container-fluid">
     <div class="card card-horizontal card-default card-md mb-4">
-        <h1 class="text-center my-5">Listar Fornecedores</h1>
+    <div class="adv-table-table__header">
+                        <h4>Fornecedores</h4>
+                        <div class="adv-table-table__button">
+                          
+                        </div>
+                     </div>
         <div class="card-body py-md-30">
             <?php
             if (mysqli_num_rows($fornecedores) > 0) {
                 $dados = '<div class="userDatatable userDatatable--ticket userDatatable--ticket--2 mt-1" id="form-geral">';
-                $dados .= '<div class="table-responsive">';
+                $dados .= '<div class="table-responsive"  style="margin-left: -30px">';
                 $dados .= '<table class="table mb-0 table-borderless">';
                 $dados .= '<thead>';
                 $dados .= '<tr class="userDatatable-header">';
