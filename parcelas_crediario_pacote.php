@@ -20,7 +20,7 @@ for ($i = 1; $i <= $parcelas; $i++) array_push($boletos, round($valor / $parcela
 
 <div class="row">
 <div class="col-2">
-<strong>Parcelaa</strong>
+<strong>Parcela</strong>
 </div>
 
 <div class="col-5" align="center">

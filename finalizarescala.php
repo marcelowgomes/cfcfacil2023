@@ -6,10 +6,6 @@ $sqluser = "SELECT * FROM usuarios WHERE id_user = '$iduser'";
 $exeuser = mysqli_query($conn, $sqluser);
 $user = mysqli_fetch_array($exeuser);
 
-?>
-<?php
-
-
 @$conn->query($insert = "INSERT INTO escalas (escala_hora_inicio,escala_hora_fim,escala_veiculo,escala_tempo, escala_intervalo, escala_usuario, escala_cfc
 ,escala_nome ) VALUES ('$_POST[hinicio]','$_POST[hfim]',
 '$_POST[veiculo]','$_POST[tempo]','$_POST[intervalo2]','$user[id_user]','$user[user_empresa]','$_POST[nome]')");
@@ -49,7 +45,7 @@ intervalo_cfc,intervalo_motivo) VALUES ('$escala', '$inicio[$i]', '$fim[$i]','$u
 <script>
        setTimeout(function() {
        window.location.href = "escala_veiculos/<?php echo $escala ?>";
-     }, 1000);
+     }, 0000);
     </script>
 
 

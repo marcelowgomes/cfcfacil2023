@@ -44,7 +44,16 @@ $exe = mysqli_query($conn, $sql);
                     </div>
                     <div class="col-6">
                         <label>Informe o veículo</label>
-                        <input class="form-control" name="veiculo">
+                        <select name="veiculo" class="form-control" required>
+<option value="">Informe</option>
+<?php 
+$sqlv= "SELECT * FROM veiculos where veiculo_cfc = '$user[user_empresa]' and veiculo_status = '1' ";
+$exev = mysqli_query($conn, $sqlv);
+while($veiculo = mysqli_fetch_array($exev)) {
+?>
+<option value="<?php echo $veiculo[id_veiculo] ?>" ><?php echo $veiculo[marca_veiculo] ?> <?php echo $veiculo[modelo_veiculo] ?> <?php echo $veiculo[placa_veiculo] ?> <?php echo $veiculo[cor_veiculo] ?> </option>
+<?php } ?>
+</select>
                     </div>
                     
 

@@ -517,11 +517,11 @@ while($veiculo = mysqli_fetch_array($exev)) {
 <select name="instrutor" required  class="form-control">
 <option value="">Informe </option>
 <?php 
-$sqli= "SELECT * FROM colaboradores where pratico = 1 and status = 1 and cod_cfc = '$user[user_empresa]' ";
+$sqli= "SELECT * FROM colaboradores where colaborador_pratico = 1 and colaborador_status = 1 and colaborador_cfc = '$user[user_empresa]' ";
 $exei = mysqli_query($conn, $sqli);
 while($instrutor = mysqli_fetch_array($exei)) {
 ?>
-<option value="<?php echo $instrutor[id] ?>" ><?php echo $instrutor[nome] ?></option>
+<option value="<?php echo $instrutor[colaborador_id] ?>" ><?php echo $instrutor[colaborador_nome] ?></option>
 <?php } ?>
 </select>
 

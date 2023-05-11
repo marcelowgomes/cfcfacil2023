@@ -58,7 +58,7 @@ Total
 Descontos
 </div>
 <div class="col-12"> 
-<input class="form-control"  name="desconto" value="<?php echo number_format($totaldescontos, 2, '.', '.');  ?>"> 
+<input class="form-control"  name="desconto" value="<?php echo number_format($totaldescontos, 2, '.', '.');  ?>" onKeyPress="return(MascaraMoeda(this,'','.',event))"> 
 </div>
 
 
