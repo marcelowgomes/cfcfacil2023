@@ -120,38 +120,7 @@ $totalaulas = $somam[totalmoto] + $somac[totalcarro] + $somaca[totalcaminhao]  +
 
                   </div>
                   
-                  <div class="col-xxl-12 col-md-8">
-                     <!-- Tab Menu -->
-                       
-<div class="card global-shadow mb-25">
-<div class="ffp align-items-center w-100">
-   
-<div class="row">
-
-<div class="col-2"><strong>Contratadas</strong></div>
-<div class="col-1"><?php echo $controle[totalcontrole] ?></div>
-
-<div class="col-2"><strong>Agendadas</strong></div>
-<div class="col-1"><?php echo $agendadas ?></div>
-
-<div class="col-2"><strong>Realizadas</strong></div>
-<div class="col-1"><?php echo $realizadas ?></div>
-
-<?php 
-/// SALDO DE AULAS
-$saldo_aulas =  $controle[totalcontrole] - $realizadas;
-/// AULAS A AGENDAR
-$a_agender =  $controle[totalcontrole] - $agendadas;
-?>
-
-<div class="col-2"><strong>Saldo</strong></div>
-<div class="col-1"><?php echo $saldo_aulas  ?></div>
-
-</div>
-
-                   
-
-                     </div> </div>
+                  
 
 
 
@@ -204,7 +173,7 @@ $a_agender =  $controle[totalcontrole] - $agendadas;
    
 
 <?php
-$sqla = "SELECT * FROM caixa c where caixa_cfc = $user[user_empresa] and caixa_estorno = '1'     ";
+$sqla = "SELECT * FROM caixa c where caixa_cfc = $user[user_empresa] and caixa_estorno = '1' order by caixa_data desc    ";
 $exea = mysqli_query($conn, $sqla);
 while( $caixa = mysqli_fetch_array($exea)) {
 
