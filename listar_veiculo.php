@@ -1,6 +1,6 @@
 <?php
 include_once "bd/conexao.php";
-$sql = "SELECT * FROM veiculos";
+$sql = "SELECT * FROM veiculos where veiculo_cfc = $user[user_empresa]";
 $veiculos = mysqli_query($conn, $sql);
 
 ?>

@@ -1,4 +1,12 @@
-﻿<div class="container-fluid">
+﻿<?php // CODIGO DA SESSION
+
+if (!empty($_SESSION['id_user'])) {
+} else {
+	$_SESSION['msg'] = "Área restrita";
+	header("Location: login.php");
+}
+?>
+<div class="container-fluid">
   <form method="post" action="confirmar_cadastro_veiculo">
     <h2 class="my-3">Cadastrar Veículo</h2>
     <div class="row">
@@ -166,17 +174,28 @@
 
 
     <div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+          <label for="tipo">Modelo</label>
+          <input type="text" class="form-control" placeholder="Informe o modelo" id="placa" name="modelo">
+
+        </div>
+
+
+      </div>
+
       <div class="col-md-6">
         <div class="form-group">
-          <label for="tipo">Tipo</label>
+          <label for="tipo">Categoria</label>
           <select type="text" class="form-control" placeholder="Escolha" id="tipo" name="tipo">
             <option value="">Escolha</option>
-            <option value="automovel">Automóvel</option>
-            <option value="caminhao">Caminhão</option>
-            <option value="carreta">Carreta</option>
-            <option value="moto">Moto</option>
-            <option value="onibus">Ônibus</option>
-            <option value="simulador">Simulador</option>
+            <option value="2">Carro</option>
+            <option value="1">Moto</option>
+            <option value="3">Caminhão</option>
+            <option value="5">Carreta</option>
+            <option value="6">Ciclomotor</option>
+            <option value="4">Ônibus</option>
+            <option value="13">Simulador</option>
           </select>
         </div>
 
@@ -191,12 +210,8 @@
           <input type="text" class="form-control" id="fabricacao" name="fabricacao" placeholder="Informe o ano de fabricação">
         </div>
       </div>
-      <!--  col-md-6   -->
-    </div>
-    <!--  row   -->
-
-
-    <div class="row">
+  
+   
       <div class="col-md-6">
 
         <div class="form-group">
@@ -216,8 +231,16 @@
       <div class="col-md-6">
         <div class="form-group">
           <label for="instrutor">Instrutor</label>
-          <input type="text" class="form-control" id="instrutor" name="instrutor" placeholder="Veículo sem instrutor">
-        </div>
+          <select name="instrutor"   class="form-control">
+<option value="">Informe </option>
+<?php 
+$sqli= "SELECT * FROM colaboradores where colaborador_pratico = '1' and colaborador_status = 1 and colaborador_cfc = '$user[user_empresa]' ";
+$exei = mysqli_query($conn, $sqli);
+while($instrutor = mysqli_fetch_array($exei)) {
+?>
+<option value="<?php echo $instrutor[colaborador_id] ?>" ><?php echo $instrutor[colaborador_nome] ?></option>
+<?php } ?>
+</select>        </div>
       </div>
 
       <div class="col-md-6">

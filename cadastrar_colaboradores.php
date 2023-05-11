@@ -14,7 +14,7 @@ if (!empty($_SESSION['id_user'])) {
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="cpf">CPF:</label>
-                    <input type="text" class="form-control" placeholder="Informe o cpf" id="cpf" name="cpf">
+                    <input type="text" name="cpf2" required class="form-control ih-medium ip-light radius-xs b-light px-15" id="a1" onkeyup="cpfCheck(this)" maxlength="18" onkeydown="javascript: fMasc( this, mCPF );">
                 </div>
             </div>
         </div>
