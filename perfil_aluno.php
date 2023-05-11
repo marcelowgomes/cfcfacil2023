@@ -67,7 +67,7 @@ mysqli_close($sqlss);
 // PEGANDO FOTO DE PERIFL
 $sql_foto = "SELECT * from imagens_perfil where id_usuario = '$id'";
 $exe_foto = mysqli_query($conn, $sql_foto);
-$foto = mysqli_fetch_assoc($exe_foto);
+$foto = mysqli_fetch_array($exe_foto);
 
 $totalaulas = $somam[totalmoto] + $somac[totalcarro] + $somaca[totalcaminhao]  + $somao[totalonibus] + $somacar[totalcarreta] + $somaci[totalclicomotor] + $somasi[totalsimulador]
 ?>
@@ -115,8 +115,8 @@ $totalaulas = $somam[totalmoto] + $somac[totalcarro] + $somaca[totalcaminhao]  +
                                     <div class="ap-img pro_img_wrapper">
                                           <input id="file-upload" type="file" name="fileUpload" class="d-none">
                                           <!-- Profile picture image-->
-                                          <label for="file-upload">
-                                             <img class="ap-img__main rounded-circle wh-120 bg-lighter d-flex" src="img/author/profile.png" alt="profile">
+                                          <label for="upload_perfil">
+                                             <img class="ap-img__main rounded-circle wh-120 bg-lighter d-flex" src="<?php echo $foto['caminho_imagem'] ?>" alt="profile">
                                           </label>
                                        </div>                                 </div>
                                  <div class="ap-nameAddress pb-3 pt-1">
@@ -128,12 +128,11 @@ $totalaulas = $somam[totalmoto] + $somac[totalcarro] + $somaca[totalcaminhao]  +
                                  </div>
                                  <div class="ap-button button-group d-flex justify-content-center flex-wrap">
                                     <button type="button" class="border text-capitalize px-25 color-gray transparent radius-md">
-                                       <img class="svg" src="<?php echo $foto['caminho_imagem']?>" alt="mail">Enviar Mensagem</button>
+                                       <img class="svg" src="img/svg/mail.svg" alt="mail">Enviar Mensagem</button>
                                  </div>
-                                 <form action="trocar_imagem/<?php echo $id ?>" enctype="multipart/form-data" method="post">
+                                 <form id="form_perfil" action="trocar_imagem/<?php echo $id ?>" enctype="multipart/form-data" method="post">
                                  <div style="margin-top: 20px">
-                                    <input type="file" name="imagem_perfil" id="file-upload" style="display:hidden">
-                                    <button type="submit" class="btn btn-primary" style="margin-left: 190px; margin-top:10px">Enviar</button>
+                                    <input type="file" name="imagem_perfil" id="upload_perfil" style="display: none" onchange="enviarFormulario()">
                                  </div>
                                  </form>
                               </div>
@@ -844,3 +843,15 @@ mysqli_close($cmda);
   </div>
 </div>
 <!-- FIM MODAL PACOTES -->
+<script>
+  const fileUpload = document.getElementById('upload_perfil');
+  const uploadButton = document.querySelector('label[for="upload_perfil"]');
+
+  uploadButton.addEventListener('click', (e) => {
+    fileUpload.click();
+  });
+
+  function enviarFormulario() {
+      document.querySelector('#form_perfil').submit(); // envia o formulário
+   }
+</script>
