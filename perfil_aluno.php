@@ -116,7 +116,7 @@ $totalaulas = $somam[totalmoto] + $somac[totalcarro] + $somaca[totalcaminhao]  +
                                           <input id="file-upload" type="file" name="fileUpload" class="d-none">
                                           <!-- Profile picture image-->
                                           <label for="upload_perfil">
-                                             <img class="ap-img__main rounded-circle wh-120 bg-lighter d-flex" src="<?php echo $foto['caminho_imagem'] ?>" alt="profile">
+                                             <img class="ap-img__main rounded-circle wh-120 bg-lighter d-flex" src="<?php echo isset($foto['caminho_imagem']) ? $foto['caminho_imagem'] : 'img/author/profile.png' ?>" alt="profile">
                                           </label>
                                        </div>                                 </div>
                                  <div class="ap-nameAddress pb-3 pt-1">

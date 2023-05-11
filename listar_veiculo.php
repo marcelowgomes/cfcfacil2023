@@ -7,13 +7,18 @@ $veiculos = mysqli_query($conn, $sql);
 
 <div class="container-fluid">
     <div class="card card-horizontal card-default card-md mb-4">
-        <h1 class="text-center my-5">Listar Veiculos</h1>
+    <div class="adv-table-table__header">
+                        <h4>Veículos</h4>
+                        <div class="adv-table-table__button">
+                          
+                        </div>
+                     </div>
         <div class="card-body py-md-30">
             <?php
             if (mysqli_num_rows($veiculos) > 0) {
                 $dados = '<div class="userDatatable userDatatable--ticket userDatatable--ticket--2 mt-1" id="form-geral">';
-                $dados .= '<div class="table-responsive">';
-                $dados .= '<table class="table mb-0 table-borderless">';
+                $dados .= '<div class="table-responsive" style="margin-left: -30px">';
+                $dados .= '<table class="table mb-0 table-borderless" >';
                 $dados .= '<thead>';
                 $dados .= '<tr class="userDatatable-header">';
                 $dados .= '<th>
@@ -45,7 +50,6 @@ $veiculos = mysqli_query($conn, $sql);
                     $dados .= "<tr>";
                     $dados .= "<td>" . $row["id_veiculo"] . "</td>";
                     $dados .= "<td>" . $row["tipo_veiculo"] . "</td>";
-                    $dados .= $row['binario'] ? "<td>Sim</td>" :  "<td>Não</td>";
                     $dados .= "<td>" . $row["placa_veiculo"] . "</td>";
                     $dados .= "<td>" . $row["marca_veiculo"] . "</td>";
                     $dados .= "<td>" . $row["cor_veiculo"] . "</td>";
