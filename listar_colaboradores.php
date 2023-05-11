@@ -1,6 +1,6 @@
 <?php
 include_once "bd/conexao.php";
-$sql = "SELECT * FROM colaboradores";
+$sql = "SELECT * FROM colaboradores where colaborador_cfc = $user[user_empresa] ";
 $colaborador = mysqli_query($conn, $sql);
 
 if (!empty($_SESSION['id_user'])) {
@@ -48,20 +48,10 @@ if (!empty($_SESSION['id_user'])) {
                 while ($row = mysqli_fetch_assoc($colaborador)) {
                     $dados .= '<tbody>';
                     $dados .= "<tr>";
-                    $dados .= "<td>" . $row["colaborador_id"] . "</td>";
-                    $dados .= "<td>" . $row["colaborador_nome"] . "</td>";
-                    $dados .= "<td>" . $row["colaborador_cpf"] . "</td>";
-                    $dados .= "<td>" . $row["colaborador_rg"] . "</td>";
-                    $dados .=
-                    '<td>
-                        <ul style="display: flex; flex-direction: row;">
-                            <li style="padding: 2px;">
-                                <a class="edit" href="listar_colaboradores/editar/' . $row['colaborador_id'] . '">
-                                    <i class="uil uil-edit" data-bs-toggle="modal" data-bs-target="#modal-edicao-colab"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </td>';
+                    $dados .= "<td>" . $row["id"] . "</td>";
+                    $dados .= "<td>" . $row["nome"] . "</td>";
+                    $dados .= "<td>" . $row["cpf"] . "</td>";
+                    $dados .= "<td>" . $row["telefone"] . "</td>";
                 }
 
                 $dados .= "</tbody>";

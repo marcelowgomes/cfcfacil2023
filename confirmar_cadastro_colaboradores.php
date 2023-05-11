@@ -25,8 +25,15 @@ if (isset($_POST['submit'])) {
 
 
     if(mysqli_query($conn, $sql)){
-        echo("<h1>Cadastro de colaborador realizado com sucesso!</h1>");
-    }else{
+?>
+<script>
+ alert("Cadastro Realizado com sucesso");
+
+ window.location.href = "listar_colaboradores";
+</script>
+
+<?php
+}else{
         echo("<h1>Houve um erro no cadastro do colaborador!</h1><br><p>".$conn->error."</p>");
     }
 }
