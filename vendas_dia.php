@@ -190,17 +190,12 @@ $a_agender =  $controle[totalcontrole] - $agendadas;
                                  <span class="userDatatable-title">Colaborador</span>
                               </th>
 
-                              <th>
-                                 <span class="userDatatable-title">Forma</span>
-                              </th>
-
+                             
                               <th>
                                  <span class="userDatatable-title">Valor</span>
                               </th>
                             
-                              <th style="width: 1%">
-                                
-                              </th>
+                             
                               
                            </tr>
                         </thead>
@@ -211,80 +206,37 @@ $a_agender =  $controle[totalcontrole] - $agendadas;
 <?php
 $sqla = "SELECT * FROM caixa c where caixa_cfc = $user[user_empresa] and caixa_estorno = '1'     ";
 $exea = mysqli_query($conn, $sqla);
-while( $aula = mysqli_fetch_array($exea)) {
+while( $caixa = mysqli_fetch_array($exea)) {
 
-$sqlm = "SELECT * FROM alunos WHERE motivo_ajuste_aula_id = '$aula[motivo_cancelada]'  ";
-$exem = mysqli_query($conn, $sqlm);
-$motivo = mysqli_fetch_array($exem);
+$sqlaluno = "SELECT * FROM alunos WHERE aluno_id = '$caixa[caixa_aluno]'  ";
+$exealuno = mysqli_query($conn, $sqlaluno);
+$aluno = mysqli_fetch_array($exealuno);
 
-$sqlq = "SELECT * FROM usuarios WHERE id_user = '$aula[usuario_cancelou]'  ";
-$exeq = mysqli_query($conn, $sqlq);
-$quem = mysqli_fetch_array($exeq);
+$partes2 = explode(' ',$aluno[aluno_nome]);
+$primeiroNome = array_shift($partes2);
+$ultimoNome = array_pop($partes2);
+
+
+
 ?> 
 
 
-<!-- INICIO MODAL INFO AULAS --> 
-<div class="modal-basic modal fade show" id="modal-basic<?php echo $aula[id_escala_aluno] ?>" tabindex="-1" role="dialog" aria-hidden="true">
-
-            <div class="modal-dialog modal-md" role="document">
-               <div class="modal-content modal-bg-white ">
-                  <div class="modal-header">
-                     <h6 class="modal-title">Detalhes</h6>
-                     <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                        <img src="img/svg/x.svg" alt="x" class="svg">
-                     </button>
-                  </div>
-                  <div class="modal-body">
-                  <?php if ($aula[escala_status] == '3') { ?> 
-
-                    <div align="center">  <button class="btn btn-danger"> Aula Cancelada </button> </div>
-
-
-                    <label><strong>Data</strong></label><br>
-                    <?php  echo (new \DateTimeImmutable($$motivo[escala_data_cancelou]))->format('d/m/Y H:i:s');  ?>
-                    <br>
-                    <label><strong>Quem cancelou</strong></label><br>
-                    <?php echo $quem[user_nome] ?>
-                    <br>
-                    <label><strong>Motivo</strong></label><br>
-                    <?php echo $motivo[motivo_ajuste_aula_motivo] ?>
-                    <br>
-                    
-                     <label><strong>Justificativa</strong></label><br>
-                     <?php echo $aula[justificativa_cancelada] ?>
-                     
-                     <?php } ?>
-
-
-
-                  <?php if ($aula[escala_status] == '2') { ?> Realizada <?php } ?>
-
-
-
-                  </div>
-                  <div class="modal-footer">
-                     <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Fechar</button>
-                  </div>
-               </div>
-            </div>
-         </div>
-        <!-- FIM MODAL INFO AULAS --> 
 
 <tbody>      
 <tr>
 
 <td>
- <?php if ($aula[caixa_aluno] <> '') { ?> A<?php } ?>
- <?php if ($aula[caixa_colaborador] <> '') { ?> C<?php } ?>
- <?php if ($aula[caixa_fornecedor] <> '') { ?> F<?php } ?>
- <?php if ($aula[caixa_veiculo] <> '') { ?> V<?php } ?>
+ <?php if ($caixa[caixa_aluno] <> '') { ?> A<?php } ?>
+ <?php if ($caixa[caixa_colaborador] <> '') { ?> C<?php } ?>
+ <?php if ($caixa[caixa_fornecedor] <> '') { ?> F<?php } ?>
+ <?php if ($caixa[caixa_veiculo] <> '') { ?> V<?php } ?>
 
 </td>
                               <td>
                                  <div class="d-flex">
                                     <div class="userDatatable-inline-title">
                                        
-                                          <h6>  <?php echo date('d/m/Y', strtotime($aula[caixa_data])); ?> </h6>
+                                          <h6>  <?php echo date('d/m/Y', strtotime($caixa[caixa_data])); ?> </h6>
                                       
                                     </div>
                                  </div>
@@ -292,19 +244,32 @@ $quem = mysqli_fetch_array($exeq);
 
                               <td>
 <div class="userDatatable-inline-title">
-<h6><?php echo $aula[horario_inicio_escala_aluno]; ?> às <?php echo $aula[horario_fim_escala_aluno]; ?></h6>
+<h6><?php echo $primeiroNome; ?> <?php echo $ultimoNome; ?> </h6>
 </div>                  
 
                                  </td>
 
 
                               <td>
-                                 <div class="userDatatable-content">
-<?php echo $aula[modelo_veiculo]; ?> -  <?php echo $aula[placa_veiculo]; ?></div>
+                              <?php if ($caixa[caixa_tipo] == 'Entrada') { ?> 
+                                    <span class="bg-opacity-success  color-success rounded-pill userDatatable-content-status active">Entrada</span>
+                                  
+                                    <?php  } ?> 
+
+                                    <?php if ($caixa[caixa_tipo] == 'Saida') { ?> 
+                                       
+                                      
+                                       <span class="bg-opacity-danger  color-danger rounded-pill userDatatable-content-status active">Saida</span> 
+                                   
+                                       
+                                       <?php } ?>
                               </td>
+
+
+
                               <td>
                                  <div class="userDatatable-content">
-                                 <?php echo $aula[nome]; ?>     
+                                Colaborador
 
 
 
@@ -314,42 +279,14 @@ $quem = mysqli_fetch_array($exeq);
                               </td>
                               
                             
-                              <td>
-                                 <div class="userDatatable-content d-inline-block">
-
-                               
-                                   <?php if ($aula[escala_status] == '1') { ?> 
-                                    <span class="bg-opacity-info  color-info rounded-pill userDatatable-content-status active">Agendada</span>
-                                  
-                                    <?php  } ?> 
-
-                                    <?php if ($aula[escala_status] == '2') { ?> 
-                                       
-                                      
-                                       <span class="bg-opacity-success  color-success rounded-pill userDatatable-content-status active">Realizada</span> 
-                                   
-                                       
-                                       <?php } ?>
-                                      
-                                       <?php if ($aula[escala_status] == '3') { ?> 
-                                       
-                                       <span class="bg-opacity-danger  color-danger rounded-pill userDatatable-content-status active">Cancelada</span>
-                                   
-                                       
-                                       <?php } ?>
-
-                                    
-                                 </div>
-                              </td> 
+                             
                               
 
                               <td>
 
 
 
-
-<?php if ($aula[escala_status] <> '1') { ?> 
-<i class="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#modal-basic<?php echo $aula[id_escala_aluno] ?>"></i> <?php } ?>
+R$ <?php echo $caixa[caixa_total] ?>
                         
                         
                         </td>
