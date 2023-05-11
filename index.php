@@ -571,10 +571,10 @@ $empresa = mysqli_fetch_array($ar);
                      </a>
                      <ul>
                         <li>
-                           <a href="cadastrar_veiculo">Vendas do Dia</a>
+                           <a href="vendas_dia">Movimentação do Dia</a>
                         </li>
                         <li>
-                           <a href="listar_veiculo">Vendas Geral</a>
+                           <a href="vendas_geral">Movimentação Geral</a>
                         </li>
                         
                      </ul>

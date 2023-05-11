@@ -23,7 +23,9 @@ case 'agenda_geral_veiculo':
 include('agenda_geral_veiculo.php');
 break;
 
-
+case 'vendas_dia':
+include('vendas_dia.php');
+break;
 
 
 
