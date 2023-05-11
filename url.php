@@ -11,17 +11,17 @@ if (!empty($_GET['url'])) {
 
     switch ($url[0]) {
 
-case 'home':
-include('home.php');
-break;
+        case 'home':
+            include('home.php');
+            break;
 
-case 'agendas':
-include('agendas.php');
-break;
-       
-case 'agenda_geral_veiculo':
-include('agenda_geral_veiculo.php');
-break;
+        case 'agendas':
+            include('agendas.php');
+            break;
+
+        case 'agenda_geral_veiculo':
+            include('agenda_geral_veiculo.php');
+            break;
 
 case 'vendas_dia':
 include('vendas_dia.php');
@@ -36,28 +36,39 @@ break;
             include('perfil_aluno.php');
             break;
 
+        case 'editar_alunos':
+            $id = $url[1];
+            include('editar_alunos.php');
+            break;
+
+        case 'excluir_aluno':
+            $id = $url[1];
+            include('excluir_aluno.php');
+            break;
         case 'alunos':
+            $metodo = $url[1];
+            $id = $url[2];
             include('alunos.php');
             break;
 
-            case 'cad_aluno':
-                include('cad_aluno.php');
-                break;
+        case 'cad_aluno':
+            include('cad_aluno.php');
+            break;
 
-                case 'inserir_aluno':
-                    include('inserir_aluno.php');
-                    break;
-                    
-case 'nova_saida':
-$id = $url[1];
-include('nova_saida.php');
-break;   
- 
-case 'gerenciar_aulas':
-$id = $url[1];
-$id2 = $url[2];
-include('gerenciar_aulas.php');
-break;  
+        case 'inserir_aluno':
+            include('inserir_aluno.php');
+            break;
+
+        case 'nova_saida':
+            $id = $url[1];
+            include('nova_saida.php');
+            break;
+
+        case 'gerenciar_aulas':
+            $id = $url[1];
+            $id2 = $url[2];
+            include('gerenciar_aulas.php');
+            break;
 
         case 'relatorio_reposicao':
             include('relatorio_reposicao.php');
@@ -89,25 +100,31 @@ break;
             break;
 
 
-            case 'listar_fornecedores':
-                $metodo = $url[1];
-                $id = $url[2];
-                include('listar_fornecedores.php');
-                break;
+        case 'listar_fornecedores':
+            $metodo = $url[1];
+            $id = $url[2];
+            include('listar_fornecedores.php');
+            break;
 
 
 
-            case 'agendar_aulas_aluno':
-                $id = $url[1];
-                $id2 = $url[2];
-                $id3 = $url[3];
-                include('agendar_aulas_aluno.php');
-                break;
-    
-                
-                case 'inserir_item_pacote':
-                    include('inserir_item_pacote.php');
-                    break;         
+        case 'agendar_aulas_aluno':
+            $id = $url[1];
+            $id2 = $url[2];
+            $id3 = $url[3];
+            include('agendar_aulas_aluno.php');
+            break;
+
+
+        case 'inserir_item_pacote':
+            include('inserir_item_pacote.php');
+            break;
+        
+            
+        case 'editar_pacotes':
+            $id = $url[1];
+            include('editar_pacote.php');
+            break;
 
 
         case 'editar_fornecedores':
@@ -120,14 +137,16 @@ break;
             break;
 
         case 'cadastrar_pacotes':
+            $metodo = $url[1];
+            $id = $url[2];
             include('cadastrar_pacotes.php');
             break;
 
-            case 'finalizarescala':
-                include('finalizarescala.php');
-                break;
+        case 'finalizarescala':
+            include('finalizarescala.php');
+            break;
 
-            
+
         case 'cadastrar_colaboradores':
             include('cadastrar_colaboradores.php');
             break;
@@ -147,27 +166,27 @@ break;
             include('editar_colaboradores.php');
             break;
 
-case 'add_itens_pacote':
-$id = $url[1];
-include('add_itens_pacote.php');
-break;
-     
+        case 'add_itens_pacote':
+            $id = $url[1];
+            include('add_itens_pacote.php');
+            break;
 
-case 'escala_veiculos':
-include('escala_veiculos.php');
-break;
+
+        case 'escala_veiculos':
+            include('escala_veiculos.php');
+            break;
 
 
         case 'confirmar_cadastro_veiculo':
             include('confirmar_cadastro_veiculo.php');
             break;
 
-            case 'inserir_pacote':
+        case 'inserir_pacote':
             include('inserir_pacote.php');
-                break;
+            break;
 
 
-            
+
 
         case 'confirmar_cadastro_colaboradores':
             include('confirmar_cadastro_colaboradores.php');
@@ -226,38 +245,43 @@ break;
             break;
 
         case 'inserir_receita_aulas':
-             $id = $url[1];
-             include('inserir_receita_aulas.php');
-             break;
-    
+            $id = $url[1];
+            include('inserir_receita_aulas.php');
+            break;
+
 
         case 'inserir_receita_cursos':
-             $id = $url[1];
-             include('inserir_receita_cursos.php');
-             break;
-       
+            $id = $url[1];
+            include('inserir_receita_cursos.php');
+            break;
+
         case 'inserir_receita_taxas':
-              $id = $url[1];
-              include('inserir_receita_taxas.php');
-              break;            
+            $id = $url[1];
+            include('inserir_receita_taxas.php');
+            break;
 
         case 'inserir_receita_locacao':
-             $id = $url[1];
-             include('inserir_receita_locacao.php');
-             break;     
-             
+            $id = $url[1];
+            include('inserir_receita_locacao.php');
+            break;
 
-         case 'inserir_receita_outros':
-             $id = $url[1];
-             include('inserir_receita_outros.php');
-             break;  
 
-               	
+        case 'inserir_receita_outros':
+            $id = $url[1];
+            include('inserir_receita_outros.php');
+            break;
+
+
         case 'venda_finalizada':
             $id = $url[1];
             $id2 = $url[2];
             include('venda_finalizada.php');
-            break;   
+            break;
+
+        case 'trocar_imagem':
+            $id = $url[1];
+            include('trocar_imagem.php');
+            break;
 
 
         case 'sair':

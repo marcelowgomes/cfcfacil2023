@@ -7,8 +7,18 @@ if (!empty($_SESSION['id_user'])) {
 }
 ?>
 <div class="container-fluid">
+<div>
+
+<div>
+  <h4 style="margin-left: -30px">Novo cadastro veículo </h4>
+
+</div>
+</div>
+</div>
+</div>
+<br>
+<div class="container-fluid" style="background-color: white; border-radius: 10px; padding: 15px">
   <form method="post" action="confirmar_cadastro_veiculo">
-    <h2 class="my-3">Cadastrar Veículo</h2>
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">

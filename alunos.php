@@ -8,7 +8,7 @@ if (!empty($_SESSION['id_user'])) {
 ?>
 
 <?php /// ALUNOS
-$sql = "SELECT * FROM alunos WHERE aluno_cfc = '$user[user_empresa]' and '1' order by aluno_nome";
+$sql = "SELECT * FROM alunos WHERE aluno_cfc = '$user[user_empresa]' and '1' and aluno_lixeira = 1 order by aluno_nome";
 $exe = mysqli_query($conn, $sql);
 ?>
 
@@ -108,13 +108,13 @@ $exe = mysqli_query($conn, $sql);
                                        </a>
                                     </li>
                                     <li>
-                                       <a href="<?php echo $user['aluno_id'] ?>" class="edit">
-                                          <i class="uil uil-edit"></i>
+                                       <a href="alunos/editar/<?php echo $user['aluno_id'] ?>" class="edit">
+                                          <i class='uil uil-edit data-bs-toggle="modal" data-bs-target="#modal-edicao-alun"'></i>
                                        </a>
                                     </li>
                                     <li>
-                                       <a href="#" class="remove">
-                                          <i class="uil uil-trash-alt"></i>
+                                       <a href="alunos/excluir/<?php echo $user['aluno_id'] ?>" class="remove">
+                                          <i class='uil uil-trash-alt data-bs-toggle="modal" data-bs-target="#modal-exclusao-alun"'></i>
                                        </a>
                                     </li>
                                  </ul>
@@ -132,3 +132,97 @@ $exe = mysqli_query($conn, $sql);
                </div>
             </div>
          </div>
+
+
+         <?php
+         if(isset($metodo) && $metodo == "editar"){
+                $sql_alunos = "SELECT * FROM alunos WHERE aluno_id = $id";
+                $alunos = mysqli_query($conn, $sql_alunos);
+                $dados = $alunos->fetch_assoc();
+            ?>
+            
+                <div class="modal fade show" id="modal-edicao-alun" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-sm modal-info  modal-lg" role="document">
+                        <div class="modal-content ">
+                            <div class="modal-body">
+                                <div class="modal-info-body d-flex">
+                                    <div class="modal-info-icon success">
+                                        <img src="img/svg/alert-circle.svg" alt="alert-circle" class="svg">
+                                    </div>
+            
+                                    <div class="modal-info-text">
+                                        <h6>Para editar um Colaborador modifique os dados abaixo!</h6>
+                                    </div> 
+                                </div>
+                                <BR>
+                                <form action="editar_alunos/<?php echo $dados['aluno_id'] ?>" id="verificar" method="post">
+                                <div class="row" id = "dvConteudo"> 
+                                    <div class="col-6">
+                                        <label> Nome </label> 
+                                        <input type="text" required class="form-control" name="nome" id="nome" value="<?php echo $dados['aluno_nome'] ?>">
+                                    </div>
+                                    <div class="col-6">
+                                        <label> CPF </label> 
+                                        <input type="text" required class="form-control" name="cpf" id="cpf" value="<?php echo $dados['aluno_cpf'] ?>">
+                                    </div>
+                                    <div class="col-6">
+                                        <label> Categoria </label> 
+                                        <input type="text" required class="form-control" name="categoria" id="categoria" value="<?php echo $dados['aluno_categoria_pretendida'] ?>">
+                                    </div>
+                                    <div class="col-6">
+                                        <label> Status </label> 
+                                        <input type="text" required class="form-control" name="status" id="status" value="<?php echo $dados['aluno_status'] ?>">
+                                    </div>
+                                </div>
+                            <div id="results"></div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-light btn-outlined btn-sm" data-bs-dismiss="modal">Cancelar</button>
+                                <button name="atualizado" type="submit" class="btn btn-info btn-outlined btn-sm">Atualizar</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                </div>
+                <script src="assets/vendor_assets/js/jquery/jquery-3.5.1.min.js"></script>
+                <script>
+                    $(document).ready(function(){
+                        $('#modal-edicao-alun').modal('show')
+                        $('.footer-wrapper').hide()
+                    })
+                </script>
+                <?php
+            }
+
+            if(isset($metodo) && $metodo == "excluir"){
+               ?>
+               <div class="modal fade show" id="modal-exclusao-alun" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-sm modal-info  modal-lg" role="document">
+                        <div class="modal-content ">
+                            <div class="modal-body">
+                                <div class="modal-info-body d-flex">
+                                    <div class="modal-info-icon success">
+                                        <img src="img/svg/alert-circle.svg" alt="alert-circle" class="svg">
+                                    </div>
+            
+                                    <div class="modal-info-text">
+                                        <h6>Tem certeza que deseja excluir esse aluno?</h6>
+                                    </div>
+                                </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-light btn-outlined btn-sm" data-bs-dismiss="modal">Cancelar</button>
+                              <a href="excluir_aluno/<?php echo($id) ?>"><button name="atualizado" type="submit" class="btn btn-info btn-outlined btn-sm">Sim</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                </div>
+                <script src="assets/vendor_assets/js/jquery/jquery-3.5.1.min.js"></script>
+                <script>
+                    $(document).ready(function(){
+                        $('#modal-exclusao-alun').modal('show')
+                        $('.footer-wrapper').hide()
+                    })
+                </script>
+                <?php
+            }
