@@ -17,7 +17,7 @@ $sub = $_POST['subcategoria'];
 $valor = $_POST['valor'];
 $inc = 'Aluno';
 $oco = 'Entrada';
-$custo = $_POST['custo'];
+
 
 if($_POST[subcategoria] == '21' ) { 
 $de = 'Curso de legislação';
@@ -28,8 +28,8 @@ if($_POST[subcategoria] == '22' ) {
     }
 
 $sql = "INSERT INTO receitas_despesas (receita_nome,receita_observacoes,receita_categoria, receita_subcategoria, receita_valor,receita_incidencia,
-receita_ocorrencia,receita_custo, receita_usuario, receita_cfc,receita_fornecedor ) 
-VALUES ('$de','$obs','$cat','$sub','$valor','$inc','$oco','$custo','$user[id_user]','$user[user_empresa]','0')";
+receita_ocorrencia, receita_usuario, receita_cfc,receita_fornecedor ) 
+VALUES ('$de','$obs','$cat','$sub','$valor','$inc','$oco','$user[id_user]','$user[user_empresa]','0')";
 if (mysqli_query($conn, $sql)) {
 ?>
 <script>

@@ -1,4 +1,13 @@
-﻿<div class="container-fluid">
+﻿
+<?php 
+if (!empty($_SESSION['id_user'])) {
+} else {
+    $_SESSION['msg'] = "Área restrita";
+    header("Location: logar.php");
+}
+
+?>      
+<div class="container-fluid">
     <form method="post" action="mais_informacoes_colaboradores">
         <h2 class="my-3">Cadastrar Colaborador</h2>
         <div class="row">

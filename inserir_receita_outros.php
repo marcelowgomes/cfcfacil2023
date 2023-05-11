@@ -17,15 +17,15 @@ $sub = '0';
 $valor = $_POST['valor'];
 $inc =  $_POST['incidencia'];
 $oco = $_POST['ocorrencia'];
-$custo = $_POST['custo'];
+
 $nome = $_POST['nome'];
 
 
 
 
 $sql = "INSERT INTO receitas_despesas (receita_nome,receita_observacoes,receita_categoria, receita_subcategoria, receita_valor,receita_incidencia,
-receita_ocorrencia,receita_custo, receita_usuario, receita_cfc,receita_fornecedor ) 
-VALUES ('$nome','$obs','$cat','$sub','$valor','$inc','$oco','$custo','$user[id_user]','$user[user_empresa]','0')";
+receita_ocorrencia, receita_usuario, receita_cfc,receita_fornecedor ) 
+VALUES ('$nome','$obs','$cat','$sub','$valor','$inc','$oco','$user[id_user]','$user[user_empresa]','0')";
 if (mysqli_query($conn, $sql)) {
 ?>
 <script>

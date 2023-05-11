@@ -10,7 +10,13 @@
         $instrutor_veiculo = $_POST['instrutor'];
         $km_inicial_veiculo = $_POST['km_inicial'];
     
-        $sql = "INSERT INTO veiculos (placa_veiculo, marca_veiculo, tipo_veiculo, ano_fabricacao_veiculo, ano_modelo_veiculo, cor_veiculo, instrutor_veiculo, km_inicial_veiculo) VALUES ('$placa_veiculo', '$marca_veiculo', '$tipo_veiculo', '$ano_fabricacao_veiculo', '$ano_modelo_veiculo', '$cor_veiculo', '$instrutor_veiculo', '$km_inicial_veiculo')";
+        $sql = "INSERT INTO veiculos (placa_veiculo, marca_veiculo, tipo_veiculo, ano_fabricacao_veiculo, ano_modelo_veiculo, cor_veiculo,
+         instrutor_veiculo, km_inicial_veiculo) 
+         VALUES ('$placa_veiculo', '$marca_veiculo', '$tipo_veiculo', '$ano_fabricacao_veiculo', '$ano_modelo_veiculo', '$cor_veiculo', 
+         '$instrutor_veiculo', '$km_inicial_veiculo')";
+
+
+
         if(mysqli_query($conn, $sql)){
             echo("<h2>Veículo cadastrado com sucesso!</h2>");
         }else{

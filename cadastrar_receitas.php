@@ -236,15 +236,12 @@ a.link {
 <label> <strong> Nome do item</strong> </label>
 <input type="text" class="form-control" name="nome" required > 
 </div>
-<div class="col-6">
+<div class="col-12">
 <label> <strong> Valor de Venda</strong> </label>
 <input type="text" class="form-control" name="valor" required  onKeyPress="return(MascaraMoeda(this,'','.',event))"> 
 </div>
 
-<div class="col-6">
-<label> <strong> Valor de Custo</strong> </label>
-<input type="text" class="form-control" name="custo"  onKeyPress="return(MascaraMoeda(this,'','.',event))"> 
-</div>
+
 
 <div class="col-12">
 <label> <strong>  Observações </strong> </label>
@@ -346,15 +343,12 @@ a.link {
 
 
 <div class="row">
-<div class="col-6">
+<div class="col-12">
 <label> <strong> Valor de Venda</strong> </label>
 <input type="text" class="form-control" name="valor" required  onKeyPress="return(MascaraMoeda(this,'','.',event))"> 
 </div>
 
-<div class="col-6">
-<label> <strong> Valor de Custo</strong> </label>
-<input type="text" class="form-control" name="custo"  onKeyPress="return(MascaraMoeda(this,'','.',event))"> 
-</div>
+
 
 <div class="col-12">
 <label> <strong>  Observações </strong> </label>
@@ -455,15 +449,12 @@ a.link {
 
 
 <div class="row">
-<div class="col-6">
+<div class="col-12">
 <label> <strong> Valor de Venda</strong> </label>
 <input type="text" class="form-control" name="valor" required  onKeyPress="return(MascaraMoeda(this,'','.',event))"> 
 </div>
 
-<div class="col-6">
-<label> <strong> Valor de Custo</strong> </label>
-<input type="text" class="form-control" name="custo"  onKeyPress="return(MascaraMoeda(this,'','.',event))"> 
-</div>
+
 
 <div class="col-12">
 <label> <strong>  Observações </strong> </label>
@@ -573,15 +564,12 @@ a.link {
 
 
 <div class="row">
-<div class="col-6">
+<div class="col-12">
 <label> <strong> Valor de Venda</strong> </label>
 <input type="text" class="form-control" name="valor" required  onKeyPress="return(MascaraMoeda(this,'','.',event))"> 
 </div>
 
-<div class="col-6">
-<label> <strong> Valor de Custo</strong> </label>
-<input type="text" class="form-control" name="custo"  onKeyPress="return(MascaraMoeda(this,'','.',event))"> 
-</div>
+
 
 <div class="col-12">
 <label> <strong>  Observações </strong> </label>
@@ -658,15 +646,12 @@ a.link {
 
 
 <div class="row " >
-<div class="col-6">
+<div class="col-12">
 <label> <strong> Valor de Venda</strong> </label>
 <input type="text" class="form-control" name="valor" required  onKeyPress="return(MascaraMoeda(this,'','.',event))"> 
 </div>
 
-<div class="col-6">
-<label> <strong> Valor de Custo</strong> </label>
-<input type="text" class="form-control" name="custo"  onKeyPress="return(MascaraMoeda(this,'','.',event))"> 
-</div>
+
 
 <div class="col-12">
 <label> <strong>  Observações </strong> </label>

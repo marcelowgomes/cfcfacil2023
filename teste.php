@@ -36,11 +36,13 @@ if($qtd  == '0') {
 }
 
 if(($totalitens == '0') and ($qtd  <> '0')) {
-@$conn->query($insert = "INSERT INTO carrinho (carrinho_item, carrinho_qtd, carrinho_usuario, carrinho_aluno ,
-carrinho_cfc,carrinho_categoria, carrinho_subcategoria, carrinho_ocorrencia	,carrinho_valorun, carrinho_custo, carrinho_desconto, carrinho_acrescimo) VALUES ('$item','$qtd','$user[id_user]',
-'$aluno','$user[user_empresa]','$cat','$sub','$oco','$valor','$custo','$desconto','$acrescimo')");
 
-//print $insert;
+@$conn->query($insert = "INSERT INTO carrinho (carrinho_item, carrinho_qtd, carrinho_usuario, carrinho_aluno ,
+carrinho_cfc,carrinho_categoria, carrinho_subcategoria, carrinho_ocorrencia	,carrinho_valorun, carrinho_desconto, carrinho_acrescimo) VALUES ('$item','$qtd','$user[id_user]',
+'$aluno','$user[user_empresa]','$cat','$sub','$oco','$valor','$desconto','$acrescimo')");
+
+echo $insert;
+//priechpnt $insert;
  } else {
 $conn->query("update carrinho set carrinho_qtd = $qtd , carrinho_desconto = $desconto , carrinho_acrescimo = $acrescimo where carrinho_aluno = $aluno and carrinho_status='1' and carrinho_cfc = $user[user_empresa] and carrinho_item = $item  ");
  }
