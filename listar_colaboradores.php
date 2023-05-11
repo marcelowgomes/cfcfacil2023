@@ -48,10 +48,31 @@ if (!empty($_SESSION['id_user'])) {
                 while ($row = mysqli_fetch_assoc($colaborador)) {
                     $dados .= '<tbody>';
                     $dados .= "<tr>";
+<<<<<<< Updated upstream
                     $dados .= "<td>" . $row["id"] . "</td>";
                     $dados .= "<td>" . $row["nome"] . "</td>";
                     $dados .= "<td>" . $row["cpf"] . "</td>";
                     $dados .= "<td>" . $row["telefone"] . "</td>";
+=======
+                    $dados .= "<td>" . $row["colaborador_id"] . "</td>";
+                    $dados .= "<td>" . $row["colaborador_nome"] . "</td>";
+                    $dados .= "<td>" . $row["colaborador_cpf"] . "</td>";
+<<<<<<< HEAD
+                    $dados .= "<td>" . $row["colaborador_rg"] . "</td>";
+                    $dados .=
+                    '<td>
+                        <ul style="display: flex; flex-direction: row;">
+                            <li style="padding: 2px;">
+                                <a class="edit" href="listar_colaboradores/editar/' . $row['colaborador_id'] . '">
+                                    <i class="uil uil-edit" data-bs-toggle="modal" data-bs-target="#modal-edicao-colab"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </td>';
+=======
+                    $dados .= "<td>" . $row["colaborador_telefone"] . "</td>";
+>>>>>>> 3eec4f8323580ac1534bcadeefe26c6fb45567fe
+>>>>>>> Stashed changes
                 }
 
                 $dados .= "</tbody>";

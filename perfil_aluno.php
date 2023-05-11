@@ -64,6 +64,11 @@ $exess = mysqli_query($conn, $sqlss);
 $somas = mysqli_fetch_array($exess);
 mysqli_close($sqlss);
 
+// PEGANDO FOTO DE PERIFL
+$sql_foto = "SELECT * from imagens_perfil where id_usuario = '$id'";
+$exe_foto = mysqli_query($conn, $sql_foto);
+$foto = mysqli_fetch_assoc($exe_foto);
+
 $totalaulas = $somam[totalmoto] + $somac[totalcarro] + $somaca[totalcaminhao]  + $somao[totalonibus] + $somacar[totalcarreta] + $somaci[totalclicomotor] + $somasi[totalsimulador]
 ?>
   
@@ -123,7 +128,7 @@ $totalaulas = $somam[totalmoto] + $somac[totalcarro] + $somaca[totalcaminhao]  +
                                  </div>
                                  <div class="ap-button button-group d-flex justify-content-center flex-wrap">
                                     <button type="button" class="border text-capitalize px-25 color-gray transparent radius-md">
-                                       <img class="svg" src="img/svg/mail.svg" alt="mail">Enviar Mensagem</button>
+                                       <img class="svg" src="<?php echo $foto['caminho_imagem']?>" alt="mail">Enviar Mensagem</button>
                                  </div>
                                  <form action="trocar_imagem/<?php echo $id ?>" enctype="multipart/form-data" method="post">
                                  <div style="margin-top: 20px">
