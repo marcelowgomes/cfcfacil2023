@@ -1,4 +1,16 @@
+<?php // CODIGO DA SESSION
+
+if (!empty($_SESSION['id_user'])) {
+} else {
+	$_SESSION['msg'] = "Área restrita";
+	header("Location: login.php");
+}
+
+include_once 'bd/conexao.php';
+
+?>
 <?php
+
 
 if (!empty($_SESSION['id_user'])) {
 } else {

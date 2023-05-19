@@ -1,3 +1,14 @@
+<?php // CODIGO DA SESSION
+
+if (!empty($_SESSION['id_user'])) {
+} else {
+	$_SESSION['msg'] = "Área restrita";
+	header("Location: login.php");
+}
+
+include_once 'bd/conexao.php';
+
+?>
 <?php
     include_once "bd/conexao.php";
     if(isset($_POST['atualizado'])){

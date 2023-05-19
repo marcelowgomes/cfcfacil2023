@@ -6,94 +6,7 @@ if (!empty($_SESSION['id_user'])) {
 }
 
 ?>
-<?php 
 
-/// ALUNOS
-$sqla = "SELECT * FROM alunos WHERE aluno_cfc = '$user[user_empresa]' and aluno_id = '$id'";
-$exea = mysqli_query($conn, $sqla);
-$aluno = mysqli_fetch_array($exea);
-
-/// SUBCATEGORIAS
-$sqlsb = "SELECT * FROM subcategoria_produtos WHERE subcat_produto_id = '$id2' ";
-$exesb = mysqli_query($conn, $sqlsb);
-$subcategoria = mysqli_fetch_array($exesb);
-
-//// CONTROLE DE AULA
-$sqlcontrole = "SELECT  SUM(carrinho_qtd) as totalcontrole FROM carrinho where carrinho_cfc  = '$user[user_empresa]' and carrinho_aluno = '$id' and carrinho_status = '2' and carrinho_subcategoria = '$id2' and carrinho_categoria = '1'  ";
-$execontrole = mysqli_query($conn, $sqlcontrole);
-$controle = mysqli_fetch_array($execontrole);
-mysqli_close($sqlcontrole);
-
-
-//// CONTROLE DE AULA AGENDADAS 
-$sqlag = "SELECT  * FROM escala_alunos where escala_cfc  = '$user[user_empresa]' and escala_aluno = '$id'  and escala_categoria = '$id2' and escala_status <>  '3'   ";
-$exeag = mysqli_query($conn, $sqlag);
-$agendadas = mysqli_num_rows($exeag);
-mysqli_close($sqlag);
-
-//// CONTROLE DE AULA AGENDADAS E REALIZADAS
-$sqlagr = "SELECT  * FROM escala_alunos where escala_cfc  = '$user[user_empresa]' and escala_aluno = '$id' and escala_status = '2' and escala_categoria = '$id2'   ";
-$exeagr = mysqli_query($conn, $sqlagr);
-$realizadas = mysqli_num_rows($exeagr);
-mysqli_close($sqlagr);
-
-
-
-
-
-/// PEGANDO DADOS DAS COMPRAS
-$sqldc = "SELECT  COUNT(*) as registros, SUM(caixa_total) as totalcompras, caixa_cfc, caixa_aluno, caixa_tipo  FROM caixa WHERE caixa_cfc = '$user[user_empresa]' and caixa_aluno = '$id' and caixa_tipo = 'Entrada'";
-$exedc = mysqli_query($conn, $sqldc);
-$alunodc = mysqli_fetch_array($exedc);
-$compras = mysqli_num_rows($exedc);
-
-
-/// SOMANDO AULAS DE CARRO
-$sqlsc = "SELECT  SUM(carrinho_qtd) as totalcarro FROM carrinho where carrinho_cfc  = '$user[user_empresa]' and carrinho_aluno = '$id' and carrinho_status = '2' and carrinho_subcategoria = '2' and carrinho_categoria = '1'  ";
-$exesc = mysqli_query($conn, $sqlsc);
-$somac = mysqli_fetch_array($exesc);
-mysqli_close($sqlsc);
-
-/// SOMANDO AULAS DE MOTO
-$sqlsm = "SELECT  SUM(carrinho_qtd) as totalmoto FROM carrinho where carrinho_cfc  = '$user[user_empresa]' and carrinho_aluno = '$id' and carrinho_status = '2' and carrinho_subcategoria = '1' and carrinho_categoria = '1'  ";
-$exesm = mysqli_query($conn, $sqlsm);
-$somam = mysqli_fetch_array($exesm);
-mysqli_close($sqlsm);
-
-/// SOMANDO AULAS DE CAMINHÃO
-$sqlsca = "SELECT  SUM(carrinho_qtd) as totalcaminhao FROM carrinho where carrinho_cfc  = '$user[user_empresa]' and carrinho_aluno = '$id' and carrinho_status = '2' and carrinho_subcategoria = '3' and carrinho_categoria = '1'  ";
-$exesca = mysqli_query($conn, $sqlsca);
-$somaca = mysqli_fetch_array($exesca);
-mysqli_close($sqlsca);
-
-/// SOMANDO AULAS DE ONIBUS
-$sqlso = "SELECT  SUM(carrinho_qtd) as totalonibus FROM carrinho where carrinho_cfc  = '$user[user_empresa]' and carrinho_aluno = '$id' and carrinho_status = '2' and carrinho_subcategoria = '4' and carrinho_categoria = '1'  ";
-$exeso = mysqli_query($conn, $sqlso);
-$somao = mysqli_fetch_array($exeso);
-mysqli_close($sqlso);
-
-/// SOMANDO AULAS DE CARRETA
-$sqlscar = "SELECT  SUM(carrinho_qtd) as totalcarreta FROM carrinho where carrinho_cfc  = '$user[user_empresa]' and carrinho_aluno = '$id' and carrinho_status = '2' and carrinho_subcategoria = '5' and carrinho_categoria = '1'  ";
-$exescar = mysqli_query($conn, $sqlscar);
-$somacar = mysqli_fetch_array($exescar);
-mysqli_close($sqlscar);
-
-/// SOMANDO AULAS DE CICLOMOTOR
-$sqlsci = "SELECT  SUM(carrinho_qtd) as totalclicomotor FROM carrinho where carrinho_cfc  = '$user[user_empresa]' and carrinho_aluno = '$id' and carrinho_status = '2' and carrinho_subcategoria = '6' and carrinho_categoria = '1'  ";
-$exesci = mysqli_query($conn, $sqlsci);
-$somaci = mysqli_fetch_array($exesci);
-mysqli_close($sqlsci);
-
-
-/// SOMANDO AULAS DE SIMULDOR
-$sqlss = "SELECT  SUM(carrinho_qtd) as totalsimulador FROM carrinho where carrinho_cfc  = '$user[user_empresa]' and carrinho_aluno = '$id' and carrinho_status = '2' and carrinho_subcategoria = '13' and carrinho_categoria = '1'  ";
-$exess = mysqli_query($conn, $sqlss);
-$somas = mysqli_fetch_array($exess);
-mysqli_close($sqlss);
-
-$totalaulas = $somam[totalmoto] + $somac[totalcarro] + $somaca[totalcaminhao]  + $somao[totalonibus] + $somacar[totalcarreta] + $somaci[totalclicomotor] + $somasi[totalsimulador]
-?>
-  
  
        
           
@@ -177,6 +90,8 @@ $sqla = "SELECT * FROM caixa c where caixa_cfc = $user[user_empresa] and caixa_e
 $exea = mysqli_query($conn, $sqla);
 while( $caixa = mysqli_fetch_array($exea)) {
 
+
+/// DADOS ALUNOS
 $sqlaluno = "SELECT * FROM alunos WHERE aluno_id = '$caixa[caixa_aluno]'  ";
 $exealuno = mysqli_query($conn, $sqlaluno);
 $aluno = mysqli_fetch_array($exealuno);
@@ -185,6 +100,37 @@ $partes2 = explode(' ',$aluno[aluno_nome]);
 $primeiroNome = array_shift($partes2);
 $ultimoNome = array_pop($partes2);
 
+mysqli_close($sqlaluno);
+
+
+/// DADOS COLABORADORES
+$sqlcolaborador = "SELECT * FROM colaboradores WHERE colaborador_id = '$caixa[caixa_colaborador]'  ";
+$execolaborador = mysqli_query($conn, $sqlcolaborador);
+$colaborador= mysqli_fetch_array($execolaborador);
+
+$partes2c = explode(' ',$colaborador[colaborador_nome]);
+$primeiroNomec = array_shift($partes2c);
+$ultimoNomec = array_pop($partes2c);
+
+mysqli_close($sqlcolaborador);
+
+/// DADOS FORNECEDORES  
+$sqlfornecedor = "SELECT * FROM fornecedores WHERE fornecedor_id = '$caixa[caixa_fornecedor]'  ";
+$exefornecedor = mysqli_query($conn, $sqlfornecedor);
+$fornecedor= mysqli_fetch_array($exefornecedor);
+
+$partes2f = explode(' ',$fornecedor[fornecedor_nome]);
+$primeiroNomef = array_shift($partes2f);
+$ultimoNomef = array_pop($partes2f);
+
+mysqli_close($sqlfornecedor);
+
+/// DADOS VEICULOS  
+$sqlveiculo = "SELECT * FROM veiculos WHERE id_veiculo = '$caixa[caixa_veiculo]'  ";
+$exeveiculo = mysqli_query($conn, $sqlveiculo);
+$veiculo= mysqli_fetch_array($exeveiculo);
+
+mysqli_close($sqlveiculo);
 
 
 ?> 
@@ -213,7 +159,12 @@ $ultimoNome = array_pop($partes2);
 
                               <td>
 <div class="userDatatable-inline-title">
-<h6><?php echo $primeiroNome; ?> <?php echo $ultimoNome; ?> </h6>
+<h6><?php echo $primeiroNome; ?> <?php echo $ultimoNome; ?>
+<?php echo $primeiroNomec; ?> <?php echo $ultimoNomec; ?>
+<?php if (caixa_veiculo <> '') {  ?> <?php echo $veiculo[placa_veiculo];  ?>   <?php } echo $primeiroNomef; ?> <?php echo $ultimoNomef; ?>
+
+
+</h6>
 </div>                  
 
                                  </td>

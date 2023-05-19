@@ -237,7 +237,7 @@ a.link {
 <input type="text" class="form-control" name="nome" required > 
 </div>
 <div class="col-12">
-<label> <strong> Valor de Venda</strong> </label>
+<label> <strong> Valor</strong> </label>
 <input type="text" class="form-control" name="valor" required  onKeyPress="return(MascaraMoeda(this,'','.',event))"> 
 </div>
 

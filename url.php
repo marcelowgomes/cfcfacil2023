@@ -27,6 +27,14 @@ case 'vendas_dia':
 include('vendas_dia.php');
 break;
 
+case 'saida_alunos':
+include('saida_alunos.php');
+break;
+
+case 'saida_fornecedores':
+include('saida_fornecedores.php');
+break;
+    
 
 
             // ALUNOS		
@@ -59,10 +67,52 @@ break;
             include('inserir_aluno.php');
             break;
 
-        case 'nova_saida':
-            $id = $url[1];
-            include('nova_saida.php');
-            break;
+            case 'saida_colaboradores':
+                include('saida_colaboradores.php');
+                break;
+            
+
+
+case 'nova_saida':
+$id = $url[1];
+include('nova_saida.php');
+break;
+
+case 'nova_saida_fornecedor':
+$id = $url[1];
+include('nova_saida_fornecedor.php');
+break;
+            
+case 'nova_saida_colaborador':
+$id = $url[1];
+include('nova_saida_colaborador.php');
+break;
+   
+case 'nova_saida_veiculo':
+$id = $url[1];
+include('nova_saida_veiculo.php');
+break;
+
+case 'saida_veiculos':
+include('saida_veiculos.php');
+break;
+
+case 'saida_finalizada_colaborador':
+$id = $url[1];
+include('saida_finalizada_colaborador.php');
+break;
+
+case 'saida_finalizada_fornecedor':
+$id = $url[1];
+include('saida_finalizada_fornecedor.php');
+break;
+
+case 'saida_finalizada_veiculo':
+$id = $url[1];
+include('saida_finalizada_veiculo.php');
+break;
+
+
 
         case 'gerenciar_aulas':
             $id = $url[1];

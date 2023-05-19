@@ -8,7 +8,7 @@ if (!empty($_SESSION['id_user'])) {
 ?>
 
 <?php /// ALUNOS
-$sql = "SELECT * FROM alunos WHERE aluno_cfc = '$user[user_empresa]' and '1' and aluno_lixeira = 1 order by aluno_nome";
+$sql = "SELECT * FROM alunos WHERE aluno_cfc = '$user[user_empresa]' and aluno_status = '1' and aluno_lixeira = 1 order by aluno_nome";
 $exe = mysqli_query($conn, $sql);
 ?>
 
@@ -16,7 +16,7 @@ $exe = mysqli_query($conn, $sql);
                <div class="userDatatable adv-table-table global-shadow border-light-0 w-100 adv-table">
                   <div class="table-responsive">
                      <div class="adv-table-table__header">
-                        <h4>Alunos</h4>
+                        <h4>Fluxo de Caixa > Alunos > Saídas</h4>
                         <div class="adv-table-table__button">
                           
                         </div>
@@ -42,9 +42,7 @@ $exe = mysqli_query($conn, $sql);
                              <!--  <th>
                                  <span class="userDatatable-title">Última compra</span>
                               </th> -->
-                              <th data-type="html" data-name='status'>
-                                 <span class="userDatatable-title">Status</span>
-                              </th>
+                             
                               <th>
                                  <span class="userDatatable-title float-end">Ações</span>
                               </th>
@@ -62,7 +60,7 @@ $exe = mysqli_query($conn, $sql);
                               <td>
                                  <div class="d-flex">
                                     <div class="userDatatable-inline-title">
-                                    <a href="perfil_aluno/<?php echo $user['aluno_id'] ?>" class="text-dark fw-500">
+                                       <a href="nova_saida/<?php echo $user['aluno_id'] ?>" class="text-dark fw-500">
                                           <h6><?php echo $user['aluno_nome'] ?> </h6>
                                        </a>
                                     </div>
@@ -70,12 +68,12 @@ $exe = mysqli_query($conn, $sql);
                               </td>
                               <td>
                                  <div class="userDatatable-content">
-                                 <a href="perfil_aluno/<?php echo $user['aluno_id'] ?>" class="text-dark fw-500"><?php echo $user['aluno_cpf'] ?></a>
+                                 <a href="nova_saida/<?php echo $user['aluno_id'] ?>" class="text-dark fw-500"> <?php echo $user['aluno_cpf'] ?></a>
                                  </div>
                               </td>
                               <td>
                                  <div class="userDatatable-content">
-                                 <a href="perfil_aluno/<?php echo $user['aluno_id'] ?>" class="text-dark fw-500">   <?php echo $user['aluno_t1'] ?></a>
+                                 <a href="nova_saida/<?php echo $user['aluno_id'] ?>" class="text-dark fw-500">  <?php echo $user['aluno_t1'] ?></a>
 
 
 
@@ -85,38 +83,18 @@ $exe = mysqli_query($conn, $sql);
                               </td>
                               <td>
                                  <div class="userDatatable-content">
-                                 <a href="perfil_aluno/<?php echo $user['aluno_id'] ?>" class="text-dark fw-500"><?php echo $user['aluno_categoria_pretendida'] ?></a>
+                                 <a href="nova_saida/<?php echo $user['aluno_id'] ?>" class="text-dark fw-500"> <?php echo $user['aluno_categoria_pretendida'] ?></a>
                                  </div>
                               </td>
-                            <!--  <td>
-                                 <div class="userDatatable-content">
-                                    January 20, 2020
-                                 </div>
-                              </td> -->
-                              <td>
-                                 <div class="userDatatable-content d-inline-block">
-                                   <?php if ($user[aluno_status] == '1') { ?> 
-                                    <span class="bg-opacity-success  color-success rounded-pill userDatatable-content-status active">Ativo</span><?php  } else { ?> 
-                                       <span class="bg-opacity-danger  color-danger rounded-pill userDatatable-content-status active">Inativo</span> <?php } ?>
-                                 </div>
-                              </td>
+                           
                               <td>
                                  <ul class="orderDatatable_actions mb-0 d-flex flex-wrap">
                                     <li>
-                                       <a href="perfil_aluno/<?php echo $user['aluno_id'] ?>" class="view">
-                                          <i class="uil uil-eye"></i>
+                                       <a href="nova_saida/<?php echo $user['aluno_id'] ?>" class="view">
+                                          <i class="uil uil-plus"></i>
                                        </a>
                                     </li>
-                                    <li>
-                                       <a href="alunos/editar/<?php echo $user['aluno_id'] ?>" class="edit">
-                                          <i class='uil uil-edit data-bs-toggle="modal" data-bs-target="#modal-edicao-alun"'></i>
-                                       </a>
-                                    </li>
-                                    <li>
-                                       <a href="alunos/excluir/<?php echo $user['aluno_id'] ?>" class="remove">
-                                          <i class='uil uil-trash-alt data-bs-toggle="modal" data-bs-target="#modal-exclusao-alun"'></i>
-                                       </a>
-                                    </li>
+                                    
                                  </ul>
                               </td>
                         </tr>
